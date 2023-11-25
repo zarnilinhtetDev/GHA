@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('in_outs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('transaction_id');
             $table->string('date')->nullable();
             $table->string('price')->nullable();
             $table->string('description')->nullable();

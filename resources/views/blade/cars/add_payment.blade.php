@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-              
+
             </ul>
 
             <!-- Right navbar links -->
@@ -86,17 +86,19 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group col-12">
-                                        <label for="price"> Payment Date</label>
+                                        <label for="price"> Payment Date<span
+                                                style="color: red;">&nbsp;*</span></label>
                                         <input type="date" class="form-control" id="payment_date" name="payment_date"
-                                            placeholder="Enter Add Payment">
+                                            placeholder="Enter Add Payment Date" required>
                                         @error('payment_date')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group col-12">
-                                        <label for="price">Add Payment</label>
+                                        <label for="price">Add Payment <span
+                                                style="color: red;">&nbsp;*</span></label>
                                         <input type="text" class="form-control" id="add_payment" name="add_payment"
-                                            placeholder="Enter Add Payment">
+                                            placeholder="Enter Add Payment" required>
                                         @error('add_payment')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -107,7 +109,7 @@
                                     <div class="form-group col-12" style="display: none">
                                         <label for="car_id">Car Type</label>
                                         <input type="text" name="car_id" class="form-control" id="car_id"
-                                            placeholder="Enter Buying Price" value="{{ $buyer->id ?? 'null' }}">
+                                            value="{{ $buyer->car_id ?? 'null' }}">
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
@@ -141,9 +143,17 @@
                                 @php
                                     $no = '1';
                                 @endphp
-                                @foreach ($pay as $pays)
+                                @if ($buyer)
                                     <tr>
                                         <td>{{ $no }}</td>
+                                        <td>{{ $buyer->created_at }}</td>
+                                        <td>{{ $buyer->payment }}</td>
+                                        <td></td>
+                                    </tr>
+                                @endif
+                                @foreach ($pay as $pays)
+                                    <tr>
+                                        <td>{{ $no + 1 }}</td>
 
                                         <td>{{ $pays->payment_date }}</td>
                                         <td>{{ $pays->add_payment }}</td>
@@ -153,7 +163,8 @@
                                             <a href="{{ url('payment-edit', $pays->id) }}" class="btn btn-success"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
 
-                                            <a href="{{ url('payment_delete', $pays->id) }}" class="btn btn-danger"><i
+                                            <a href="{{ url('payment_delete', $pays->id) }}" class="btn btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete ?')"><i
                                                     class="fa-solid fa-trash"></i></a>
 
 

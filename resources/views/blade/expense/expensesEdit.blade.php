@@ -73,8 +73,10 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="transaction_id">Transaction Name</label>
-                                            <select name="transaction_id" class="form-control" id="transaction_id">
+                                            <label for="transaction_id">Transaction Name<span
+                                                    style="color: red;">&nbsp;*</span></label>
+                                            <select name="transaction_id" class="form-control" id="transaction_id"
+                                                required>
                                                 <option value="">Select Transaction</option>
 
                                                 @foreach ($transaction as $transactions)
@@ -88,20 +90,22 @@
                                                         </option>
                                                     @endif
                                                 @endforeach
-
+                                                re
                                             </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="expense_date">Date</label>
+                                            <label for="expense_date">Date<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <input class="form-control" type="date" name="expense_date"
-                                                id="expense_date" value="{{ $expenseData->expense_date }}">
+                                                id="expense_date" value="{{ $expenseData->expense_date }}"required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="expense_price">Price</label>
+                                            <label for="expense_price">Price<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="expense_price"
-                                                name="expense_price" value="{{ $expenseData->expense_price }}">
+                                                name="expense_price" value="{{ $expenseData->expense_price }}"required>
                                         </div>
 
 

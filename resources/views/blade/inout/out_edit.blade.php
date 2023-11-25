@@ -6,9 +6,7 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
+
 
             </ul>
 
@@ -33,7 +31,12 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+
+                                <li class="breadcrumb-item"><a href="{{ url('/expense') }}">Company
+                                        Expenses</a>
+                                </li>
+                                <li class="breadcrumb-item active"><a href="{{ url('/inout') }}">
+                                        ပေးရန် - ရရန် စာရင်းများ</a></li>
                                 <li class="breadcrumb-item active">ပေးရန် Update</li>
                             </ol>
                         </div>
@@ -69,18 +72,35 @@
                                 <form action="{{ url('/out_update', $out->id) }}" method="POST">
                                     @csrf
                                     <div class="card-body">
+                                        <label for="transaction_id">Transaction Name<span
+                                                style="color: red;">&nbsp;*</span></label>
+                                        <select name="transaction_id" class="form-control" id="transaction_id" required>
+                                            <option value="">Select Transaction</option>
 
+                                            @foreach ($transaction as $transactions)
+                                                @if ($out->transaction_id == $transactions->id)
+                                                    <option value="{{ $transactions->id }}" selected>
+                                                        {{ $transactions->transaction_name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $transactions->id }}">
+                                                        {{ $transactions->transaction_name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+
+                                        </select>
 
                                         <div class="form-group">
-                                            <label for="out_date">Date</label>
+                                            <label for="out_date">Date<span style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="out_date" name="out_date"
-                                                value="{{ $out->out_date }}">
+                                                value="{{ $out->out_date }}" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="price">Price</label>
+                                            <label for="price">Price<span style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="out_price" name="out_price"
-                                                value="{{ $out->out_price }}">
+                                                value="{{ $out->out_price }}" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="out_description">Description</label>

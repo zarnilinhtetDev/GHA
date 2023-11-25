@@ -28,7 +28,7 @@ class TransactionController extends Controller
             "transaction_code" => "required",
             "transaction_name" => "required",
             "account_id" => "required",
-        ]);
+        ], ["account_id" => "The account name is required."]);
 
         $trasaction = new Transaction();
         $trasaction->transaction_code = $request->transaction_code;

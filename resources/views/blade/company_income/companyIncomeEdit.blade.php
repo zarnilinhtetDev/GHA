@@ -5,12 +5,7 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
 
-            </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -42,22 +37,6 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            {{-- <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>DataTables</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">DataTables</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section> --}}
 
             <!-- Main content -->
             <section class="content">
@@ -76,8 +55,10 @@
 
 
                                         <div class="form-group">
-                                            <label for="transaction_id">Transaction Name</label>
-                                            <select name="transaction_id" class="form-control" id="transaction_id">
+                                            <label for="transaction_id">Transaction Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
+                                            <select name="transaction_id" class="form-control" id="transaction_id"
+                                                required>
                                                 <option value="">Select Transaction</option>
 
                                                 @foreach ($transaction as $transactions)
@@ -96,15 +77,17 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="company_date">Date</label>
+                                            <label for="company_date">Date<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                             <input class="form-control" type="date" name="company_date"
-                                                id="company_date" value="{{ $income->company_date }}">
+                                                id="company_date" value="{{ $income->company_date }}"required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="company_price">Price</label>
+                                            <label for="company_price">Price<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="company_price"
-                                                name="company_price" value="{{ $income->company_price }}">
+                                                name="company_price" value="{{ $income->company_price }}"required>
                                         </div>
 
 

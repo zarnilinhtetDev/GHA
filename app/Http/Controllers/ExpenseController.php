@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expense;
-use App\Models\ExpenseCategory;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\ExpenseCategory;
 use Illuminate\Support\Facades\DB;
 
 class ExpenseController extends Controller
@@ -24,7 +25,7 @@ class ExpenseController extends Controller
             'transaction_id' => 'required',
             'expense_date' => 'required',
             'expense_price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-        ]);
+        ], ['transaction_id' => 'The transaction name is required']);
 
         $expense = new Expense();
         $expense->expense_date = $request->expense_date;
@@ -75,8 +76,9 @@ class ExpenseController extends Controller
     }
     public function filter(Request $request)
     {
-        $start_date = $request->input('start_date');
-        $end_date = $request->input('end_date');
+
+        $start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
         $expenseCategory = ExpenseCategory::all();
 
 

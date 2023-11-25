@@ -58,7 +58,8 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" name="name" value="{{ $userShow->name }}">
+                                        aria-describedby="emailHelp" name="name" value="{{ $userShow->name }}"
+                                        required>
 
 
                                 </div>
@@ -66,13 +67,15 @@
                                     <label for="exampleInputEmail1">Email address <span
                                             class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        value="{{ $userShow->email }}" aria-describedby="emailHelp" name="email">
+                                        value="{{ $userShow->email }} " aria-describedby="emailHelp" name="email"
+                                        required>
 
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="exampleInputPassword1">New Password</label>
+                                    <label for="exampleInputPassword1">New Password<span
+                                            class="text-danger">*</span></label>
                                     <input type="password" class="form-control" id="exampleInputPassword1"
-                                        name="new_password">
+                                        name="new_password" required>
                                     @error('new_password')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

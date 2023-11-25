@@ -25,4 +25,8 @@ class Transaction extends Model
     {
         return $this->hasMany(CompanyIncome::class);
     }
+    public function inout()
+    {
+        return $this->hasMany(Inout::class);
+    }
 }

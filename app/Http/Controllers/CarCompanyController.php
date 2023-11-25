@@ -8,9 +8,10 @@ use App\Models\Offer;
 use App\Models\Expense;
 
 use App\Models\CarExpense;
-use Illuminate\Http\Request;
-use App\Models\ExpenseCategory;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\ExpenseCategory;
 
 class CarCompanyController extends Controller
 {
@@ -26,8 +27,10 @@ class CarCompanyController extends Controller
 
     public function filter(Request $request)
     {
-        $start_date = $request->input('start_date');
-        $end_date = $request->input('end_date');
+
+        $start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        $end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
+
         $car_expenses = CarExpense::all();
 
         // Use Eloquent query to filter records by date range

@@ -69,6 +69,8 @@ Route::middleware(['auth'])->group(
         // Route::get('/soldcar/{id}', [CarController::class, 'soldcar']);
         Route::get('/Soldout_Detail/{id}', [CarController::class, 'Soldout_Detail']);
 
+        Route::any('/soldout_search', [CarController::class, 'search']);
+
 
         //Car Buy
         Route::post('/Buying_Price/{id}', [BuyController::class, 'buying_price'])->name('Buying_Price');

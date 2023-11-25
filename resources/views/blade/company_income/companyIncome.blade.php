@@ -5,12 +5,7 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-              
-            </ul>
+
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -92,9 +87,10 @@
                                                 @csrf
 
                                                 <div class="form-group">
-                                                    <label for="transaction_id">Transaction Name</label>
+                                                    <label for="transaction_id">Transaction Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <select name="transaction_id" class="form-control"
-                                                        id="transaction_id">
+                                                        id="transaction_id" required>
                                                         <option value="">Select Transaction
                                                             @foreach ($transaction as $transactions)
                                                         <option value="{{ $transactions->id }}">
@@ -109,20 +105,22 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="company_date">Date</label>
+                                                    <label for="company_date">Date<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input class="form-control" type="date" name="company_date"
                                                         id="company_date" placeholder="Enter Date"
-                                                        value="{{ old('company_date') }}">
+                                                        value="{{ old('company_date') }}" required>
                                                     @error('company_date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="company_price">Amount</label>
+                                                    <label for="company_price">Amount<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="company_price"
                                                         name="company_price" placeholder="Enter Price"
-                                                        value="{{ old('company_price') }}">
+                                                        value="{{ old('company_price') }}" required>
                                                     @error('company_price')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -185,7 +183,9 @@
                                                             class="btn btn-success"><i
                                                                 class="fa-solid fa-pen-to-square"></i></a>
                                                         <a href="{{ url('companyincome_delete', $income->id) }}"
-                                                            class="btn btn-danger"><i class="fa-solid fa-trash"></i>
+                                                            class="btn btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete?')"><i
+                                                                class="fa-solid fa-trash"></i>
                                                     </td>
                                                 </tr>
                                                 @php

@@ -49,6 +49,7 @@ class AccountController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $account = Account::find($id);
         $account->update($request->all());
         return redirect('account')->with('updateStatus', 'Account Update is Successfull');

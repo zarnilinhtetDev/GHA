@@ -5,12 +5,7 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
 
-            </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -88,17 +83,19 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group col-12">
-                                            <label for="payment_date"> Payment Date</label>
+                                            <label for="payment_date"> Payment Date<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <input type="date" class="form-control" id="payment_date"
                                                 name="payment_date" placeholder="Enter Add Payment"
-                                                value="{{ $paymentData->payment_date }}">
+                                                value="{{ $paymentData->payment_date }}"required>
 
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="price">Add Payment</label>
+                                            <label for="price">Add Payment<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="add_payment"
                                                 name="add_payment" placeholder="Enter Add Payment"
-                                                value="{{ $paymentData->add_payment }}">
+                                                value="{{ $paymentData->add_payment }}"required>
 
                                         </div>
 

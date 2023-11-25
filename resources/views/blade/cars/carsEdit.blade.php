@@ -44,53 +44,60 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-4">
-                                    <label for="car_type">Car Type</label>
+                                    <label for="car_type">Car Type<span style="color: red;">&nbsp;*</span></label>
                                     <input type="text" class="form-control" id="car_type" name="car_type"
-                                        value="{{ $carShow->car_type }}">
+                                        value="{{ $carShow->car_type }}" required>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="car_model">Car Model</label>
+                                    <label for="car_model">Car Grade<span style="color: red;">&nbsp;*</span></label>
                                     <input type="text" class="form-control" id="car_model" name="car_model"
-                                        value="{{ $carShow->car_model }}">
+                                        value="{{ $carShow->car_model }}"required>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="car_number">Car Number</label>
+                                    <label for="car_number">Car Number<span style="color: red;">&nbsp;*</span></label>
                                     <input type="text" class="form-control" id="car_number" name="car_number"
-                                        value="{{ $carShow->car_number }}">
+                                        value="{{ $carShow->car_number }}" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-4">
-                                    <label for="manufacture_year">Car Manufacture Year</label>
+                                    <label for="manufacture_year">Car Manufacture Year<span
+                                            style="color: red;">&nbsp;*</span></label>
                                     <input type="text" class="form-control" id="manufacture_year"
-                                        name="manufacture_year" value="{{ $carShow->manufacture_year }}">
+                                        name="manufacture_year" value="{{ $carShow->manufacture_year }}"required>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="License_expire">License Expire</label>
+                                    <label for="License_expire">License Expire<span
+                                            style="color: red;">&nbsp;*</span></label>
                                     <input type="text" class="form-control" id="License_expire" name="License_expire"
-                                        value="{{ $carShow->License_expire }}">
+                                        value="{{ $carShow->License_expire }}"required>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="car_color">Car Color</label>
+                                    <label for="car_color">Car Color<span style="color: red;">&nbsp;*</span></label>
                                     <input type="text" class="form-control" id="car_color" name="car_color"
-                                        value="{{ $carShow->car_color }}">
+                                        value="{{ $carShow->car_color }}"required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="car_images">Car Images</label>
+                                    <label for="car_images">Car Images<span style="color: red;">&nbsp;*</span></label>
                                     <div class="border p-1" style="border:#d0d0db 1px solid">
+                                        {{-- <input type="file" class="form-control-file" id="car_images"
+                                            name="car_images" required> --}}
+
                                         <input type="file" class="form-control-file" id="car_images"
-                                            name="car_images">
+                                            name="car_images" value="{{ $carShow->car_images }}">
                                     </div>
                                     @error('car_images')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     @if ($carShow->car_images)
                                         <div class="mt-2">
+
                                             <img src="{{ asset('carimage/' . $carShow->car_images) }}"
-                                                alt="Current Car Image" width="100">
+                                                onclick="window.open(this.src,'_blank')" width="100px">
+
                                         </div>
                                     @endif
                                 </div>

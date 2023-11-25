@@ -45,6 +45,9 @@
                                             <ol class="breadcrumb float-sm-right">
                                                 <li class="breadcrumb-item"><a
                                                         href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="{{ url('/expense') }}">Company
+                                                        Expenses</a>
+                                                </li>
                                                 <li class="breadcrumb-item active">ပေးရန် - ရရန် စာရင်းများ</li>
                                             </ol>
                                         </div>
@@ -85,20 +88,39 @@
                                             <form action="{{ url('/ya_yan') }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
+                                                    <label for="transaction_id">Transaction Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
+                                                    <select name="transaction_id" class="form-control"
+                                                        id="transaction_id" required>
+                                                        <option value="">Select Transaction
+                                                            @foreach ($transaction as $transactions)
+                                                        <option value="{{ $transactions->id }}">
+                                                            {{ $transactions->transaction_name }}
+                                                        </option>
+                                                        @endforeach
+                                                        </option>
+                                                    </select>
+                                                    @error('transaction_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label for="date">Date</label>
                                                     <input type="date" class="form-control" id="date"
                                                         name="date" placeholder="Enter Date"
-                                                        value="{{ old('date') }}">
+                                                        value="{{ old('date') }}" required>
                                                     @error('date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="price">Price</label>
+                                                    <label for="price">Price<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="price"
                                                         name="price" placeholder="Enter Price"
-                                                        value="{{ old('price') }}">
+                                                        value="{{ old('price') }}" required>
                                                     @error('price')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -107,7 +129,7 @@
                                                     <label for="description">Description</label>
                                                     <input type="text" class="form-control" id="description"
                                                         name="description" placeholder="Enter Description"
-                                                        value="{{ old('description') }}">
+                                                        value="{{ old('description') }}" re>
                                                     @error('description')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -145,20 +167,40 @@
                                             <form action="{{ url('/outRegister') }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="out_date">Date</label>
+                                                    <label for="transaction_id">Transaction Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
+                                                    <select name="transaction_id" class="form-control"
+                                                        id="transaction_id" required>
+                                                        <option value="">Select Transaction
+                                                            @foreach ($transaction as $transactions)
+                                                        <option value="{{ $transactions->id }}">
+                                                            {{ $transactions->transaction_name }}
+                                                        </option>
+                                                        @endforeach
+                                                        </option>
+                                                    </select>
+                                                    @error('transaction_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="out_date">Date<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="date" class="form-control" id="out_date"
                                                         name="out_date" placeholder="Enter Date"
-                                                        value="{{ old('out_date') }}">
+                                                        value="{{ old('out_date') }}" required>
                                                     @error('out_date')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="out_price">Price</label>
+                                                    <label for="out_price">Price<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="out_price"
                                                         name="out_price" placeholder="Enter Price"
-                                                        value="{{ old('out_price') }}">
+                                                        value="{{ old('out_price') }}" required>
                                                     @error('out_price')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -216,6 +258,7 @@
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
+                                                    <th>Transaction Name</th>
                                                     <th>Date</th>
                                                     <th>Price</th>
                                                     <th>Descripton</th>
@@ -229,6 +272,7 @@
                                                 @foreach ($inouts as $inout)
                                                     @if ($inout->date != null)
                                                         <tr>
+                                                            <td>{{ $inout->transaction->transaction_name }}</td>
                                                             <td>{{ $inout->date }}</td>
                                                             <td>{{ $inout->price }}</td>
                                                             <td>{{ $inout->description }}</td>
@@ -238,7 +282,8 @@
                                                                     class="btn btn-success"><i
                                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                                 <a href="{{ url('inout_delete', $inout->id) }}"
-                                                                    class="btn btn-danger"><i
+                                                                    class="btn btn-danger"
+                                                                    onclick="return confirm('Are you sure you want to delete?')"><i
                                                                         class="fa-solid fa-trash"></i>
                                                             </td>
                                                         </tr>
@@ -266,6 +311,8 @@
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
+                                                    <th>Transaction Name</th>
+
                                                     <th>Date</th>
                                                     <th>Price</th>
                                                     <th>Descripton</th>
@@ -279,6 +326,7 @@
                                                 @foreach ($inouts as $inout)
                                                     @if ($inout->out_date != null)
                                                         <tr>
+                                                            <td>{{ $inout->transaction->transaction_name }}</td>
                                                             <td>{{ $inout->out_date }}</td>
                                                             <td>{{ $inout->out_price }}</td>
                                                             <td>{{ $inout->out_description }}</td>
@@ -288,7 +336,8 @@
                                                                     class="btn btn-success"><i
                                                                         class="fa-solid fa-pen-to-square"></i></a>
                                                                 <a href="{{ url('inout_delete', $inout->id) }}"
-                                                                    class="btn btn-danger"><i
+                                                                    class="btn btn-danger"
+                                                                    onclick="return confirm('Are you sure you want to delete?')"><i
                                                                         class="fa-solid fa-trash"></i>
                                                             </td>
                                                         </tr>

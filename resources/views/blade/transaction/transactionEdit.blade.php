@@ -41,22 +41,6 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            {{-- <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>DataTables</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">DataTables</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section> --}}
 
             <!-- Main content -->
             <section class="content">
@@ -73,12 +57,13 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="accounts_id">Account Name</label>
+                                            <label for="accounts_id">Account Name<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <select name="account_id" class="form-control" id="account_id">
                                                 <option value="">Select Accounts</option>
 
                                                 @foreach ($accounts as $account)
-                                                    <option value="{{ $account->id }}">
+                                                    <option value="{{ $account->id }}" selected>
                                                         {{ $account->account_name }}
                                                     </option>
                                                 @endforeach
@@ -86,12 +71,14 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="transaction_code">Code</label>
+                                            <label for="transaction_code">Code<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="transaction_code"
                                                 name="transaction_code" value="{{ $transaction->transaction_code }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="transaction_name">Name</label>
+                                            <label for="transaction_name">Name<span
+                                                    style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="transaction_name"
                                                 name="transaction_name" value="{{ $transaction->transaction_name }}">
                                         </div>

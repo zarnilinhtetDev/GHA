@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AddPayment;
 use App\Models\Car;
+use App\Models\Buyer;
+use App\Models\AddPayment;
 use Illuminate\Http\Request;
 
 class AddPaymentController extends Controller
@@ -11,12 +12,14 @@ class AddPaymentController extends Controller
 
     public function add_pay($id)
     {
+        $buyer = Buyer::where('car_id', $id)->first();
         $payment = AddPayment::find($id);
         $car = Car::find($id);
-        $pay = AddPayment::all();
+        $pay = AddPayment::where('car_id', $id)->get();
 
-        $totalAmount = AddPayment::sum('add_payment');
-        return view('blade.cars.add_payment', compact('payment', 'car', 'pay', 'totalAmount'));
+        $total = AddPayment::where('car_id', $id)->sum('add_payment');
+        $totalAmount = $total + $buyer->payment;
+        return view('blade.cars.add_payment', compact('payment', 'car', 'pay', 'totalAmount', 'buyer'));
     }
 
     public function Add_Payment(Request $request, $id)

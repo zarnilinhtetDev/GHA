@@ -28,16 +28,16 @@ class BuyController extends Controller
     public function deleteCarPrice($carId)
     {
         // Find the car by its ID
-        $car = Buy::find($carId);
+        $car = Buy::where('car_id', $carId)->orderBy('created_at', 'desc')->first();
 
         if (!$car) {
             return redirect()->back()->with('deleteStatus', 'Car not found.');
-        }
+        } else
+            $car->delete();
 
-        $car->delete();
-
-        return redirect()->back()->with('deleteStatus', 'Car price deleted successfully.');
+        return redirect()->back()->with('deleteStatus', 'Car expense price deleted successfully.');
     }
+
     public function update(Request $request, $id)
     {
         $car = Buy::where('car_id', $id)->orderBy('created_at', 'desc')->first();

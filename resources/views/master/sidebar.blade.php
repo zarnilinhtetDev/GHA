@@ -72,20 +72,20 @@
                           </p>
                       </a>
                   </li>
-                  {{-- @if (auth()->user()->is_admin)
+                  @if (auth()->user()->is_admin)
                       <a class="nav-link" href="{{ url('/user') }}">
                           <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i> Users</div>
 
                       </a>
-                  @endif --}}
-                  <li class="nav-item">
+                  @endif
+                  {{-- <li class="nav-item">
                       <a class="nav-link" href="{{ url('/user') }}">
                           <i class="fa-solid fa-user-plus"></i>
                           <p class="pl-3">
                               Users
                           </p>
                       </a>
-                  </li>
+                  </li> --}}
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

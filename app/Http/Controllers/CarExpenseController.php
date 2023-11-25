@@ -49,7 +49,7 @@ class CarExpenseController extends Controller
             'description' => 'required',
             'expense_price' => 'required|numeric',
         ]);
-        $carExpense = CarExpense::findOrFail($id);
+        $carExpense = CarExpense::where('car_id', $id)->first();
         $carExpense->update($data);
 
         return redirect()->back()->with('success', 'Car Expense updated successfully');

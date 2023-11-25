@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-               
+
             </ul>
 
             <!-- Right navbar links -->
@@ -56,7 +56,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <ol class="breadcrumb float-sm-right">
-                                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a
+                                                        href="{{ url('/dashboard') }}">Dashboard</a></li>
                                                 <li class="breadcrumb-item active">Accounts</li>
                                             </ol>
                                         </div>
@@ -90,17 +91,19 @@
                                             <form action="{{ url('/accounts_register') }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="account_code">Code</label>
+                                                    <label for="account_code">Code<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="account_code"
-                                                        name="account_code" placeholder="Enter Account Code">
+                                                        name="account_code" placeholder="Enter Account Code" required>
                                                     @error('account_code')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="account_name">Name</label>
+                                                    <label for="account_name">Name <span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="account_name"
-                                                        name="account_name" placeholder="Enter Account Name">
+                                                        name="account_name" placeholder="Enter Account Name" required>
                                                     @error('account_name')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -168,7 +171,7 @@
                                                                 class="fa-solid fa-pen-to-square"></i></a>
                                                         <a href="{{ url('accounts_delete', $accounts->id) }}"
                                                             class="btn btn-danger"
-                                                            onclick="return confirm('Are you sure you want to delete this user ?')"><i
+                                                            onclick="return confirm('Are you sure you want to delete this?')"><i
                                                                 class="fa-solid fa-trash"></i>
                                                     </td>
                                                 </tr>

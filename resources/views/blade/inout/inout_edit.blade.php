@@ -29,12 +29,17 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>ရရန်</h1>
+                            <h1>ရရန်စာရင်း</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active">ရရန် Update</li>
+
+                                <li class="breadcrumb-item"><a href="{{ url('/expense') }}">Company
+                                        Expenses</a>
+                                </li>
+                                <li class="breadcrumb-item active"><a href="{{ url('/inout') }}">
+                                        ပေးရန် - ရရန် စာရင်းများ</a></li>
+                                <li class="breadcrumb-item active">ပေးရန် Update</li>
                             </ol>
                         </div>
                     </div>
@@ -70,17 +75,36 @@
                                     @csrf
                                     <div class="card-body">
 
+                                        <label for="transaction_id">Transaction Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
+                                        <select name="transaction_id" class="form-control" id="transaction_id" required>
+                                            <option value="">Select Transaction</option>
 
+                                            @foreach ($transaction as $transactions)
+                                                @if ($inout->transaction_id == $transactions->id)
+                                                    <option value="{{ $transactions->id }}" selected>
+                                                        {{ $transactions->transaction_name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $transactions->id }}">
+                                                        {{ $transactions->transaction_name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+
+                                        </select>
                                         <div class="form-group">
-                                            <label for="date">Date</label>
+                                            <label for="date">Date<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="date" name="date"
-                                                placeholder="Enter Date" value="{{ $inout->date }}">
+                                                placeholder="Enter Date" value="{{ $inout->date }}" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="price">Price</label>
+                                            <label for="price">Price<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="price" name="price"
-                                                placeholder="Enter Price" value="{{ $inout->price }}">
+                                                placeholder="Enter Price" value="{{ $inout->price }}" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Description</label>

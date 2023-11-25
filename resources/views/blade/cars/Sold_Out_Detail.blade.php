@@ -82,10 +82,7 @@
                                         <td class="fw-normal">{{ $buyer->buyer_name ?? 'none' }}</td>
 
                                     </tr>
-                                    <tr>
-                                        <td class="fw-light" style="width:300px">Buyer NRC</td>
-                                        <td class="fw-normal">{{ $buyer->buyer_nrc ?? 'none' }}</td>
-                                    </tr>
+
                                     <tr>
                                         <td class="fw-light" style="width:300px">Car Type</td>
                                         <td class="fw-normal">{{ $cardata->car_type ?? 'none' }}</td>
@@ -102,11 +99,12 @@
                                     <tr>
                                         <td class="fw-light" style="width: 300px">Car Image</td>
                                         <td>
-                                            <a target="_blank"
-                                                href="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}">
-                                                <img src="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}"
-                                                    alt="" width="65px">
-                                            </a>
+
+
+                                            <img src="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}"
+                                                onclick="window.open(this.src,'_blank')" width="65px">
+
+
                                         </td>
                                     </tr>
 
@@ -163,7 +161,10 @@
                                     <tr>
                                         <td class="fw-light" style="width:300px">Payment</td>
                                         <td class="fw-normal">
-                                            {{ number_format(intval($buyer->payment + $totalAmount), 0, '', ',') ?? 'none' }}
+
+
+                                            {{ number_format(intval($buyer->payment + (!empty($totalAmount) && isset($totalAmount[0]['total_amount']) ? $totalAmount[0]['total_amount'] : 0)), 0, '', ',') ?? 'none' }}
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -172,17 +173,38 @@
                                             {{-- {{ $buyer->balance }} --}}
                                             @php
                                                 $buyerBalance = $buyer->balance ?? 'none';
-                                                $totalAmount = $totalAmount ?? 'none';
+                                                $totalAmount = $totalAmount[0]['total_amount'] ?? 0;
 
-                                                if ($buyerBalance !== 'none' && $totalAmount !== 'none') {
+                                                if ($buyerBalance !== 'none') {
+                                                    //  && $totalAmount == 'none')
                                                     $result = $buyerBalance - $totalAmount;
                                                     echo number_format(intval($result), 0, '', ',');
                                                 } else {
-                                                    echo "Invalid input: One or both values are 'none'.";
+                                                    // echo "Invalid input: One or both values are 'none'.";
+                                                    echo number_format(intval(0), 0, '', ',');
                                                 }
+
                                             @endphp
+
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-light" style="width:300px">Document</td>
+                                        <td class="fw-normal">
+                                            <a target="_blank"
+                                                href="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}">
+                                                <img src="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}"
+                                                    alt="" width="65px">
+                                            </a>
+                                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="{{ asset('documentUpload/' . ($buyer->document ?? 'null')) }}"
+                                                class="btn btn-primary" download>
+                                                Download
+                                            </a>
                                         </td>
                                     </tr>
+
 
 
                                 </table>

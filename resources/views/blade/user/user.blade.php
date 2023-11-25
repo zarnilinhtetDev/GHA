@@ -76,7 +76,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" name="name">
+                                        aria-describedby="emailHelp" name="name" required>
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -86,7 +86,7 @@
                                     <label for="exampleInputEmail1">Email address <span
                                             class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" name="email">
+                                        aria-describedby="emailHelp" name="email" required>
                                     @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -95,7 +95,7 @@
                                     <label for="exampleInputPassword1">Password <span
                                             class="text-danger">*</span></label>
                                     <input type="password" class="form-control" id="exampleInputPassword1"
-                                        name="password">
+                                        name="password" required>
                                     @error('password')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -115,7 +115,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Cars Table</h3>
+                        <h3 class="card-title">User Table</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

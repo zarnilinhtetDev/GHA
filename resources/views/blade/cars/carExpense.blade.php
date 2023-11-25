@@ -244,7 +244,7 @@
                                                             class="fa-solid fa-pen-to-square"></i></a>
 
                                                     <a href="{{ route('delete.car.price', $car->id) }}"
-                                                        class="btn btn-danger"> <i class="fa-solid fa-trash"></i></a>
+                                                        class="btn btn-danger"onclick="return confirm('Are you sure you want to delete?')"> <i class="fa-solid fa-trash"></i></a>
                                                 </td>
                                             </tr>
 
@@ -267,7 +267,7 @@
                                                                 <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
                                                             <a href="{{ route('delete.expense', $expense->id) }}"
-                                                                class="btn btn-danger">
+                                                                class="btn btn-danger "onclick="return confirm('Are you sure you want to delete?')">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </a>
                                                         </td>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('payment');
             $table->string('balance');
             $table->string('buyer_ph');
-            $table->string('buyer_nrc');
+
             $table->string('document')->nullable();
             $table->timestamps();
         });

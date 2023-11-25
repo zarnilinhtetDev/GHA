@@ -64,23 +64,25 @@
                                   @csrf
                                   <div class="row">
                                       <div class="form-group col-4">
-                                          <label for="car_name">Car Type</label>
+                                          <label for="car_name">Car Type<span style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="car_type" name="car_type"
-                                              placeholder="Enter Car Type" value="{{ old('car_type') }}">
+                                              placeholder="Enter Car Type" value="{{ old('car_type') }}" required>
                                           @error('car_type')
                                               <span class="text-danger">{{ $message }}</span>
                                           @enderror
                                       </div>
                                       <div class="form-group col-4">
-                                          <label for="car_brand">Car Model</label>
+                                          <label for="car_brand">Car Grade<span
+                                                  style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="car_model" name="car_model"
-                                              placeholder="Enter Car Model" value="{{ old('car_model') }}">
+                                              placeholder="Enter Car Model" value="{{ old('car_model') }}" required>
                                           @error('car_model')
                                               <span class="text-danger">{{ $message }}</span>
                                           @enderror
                                       </div>
                                       <div class="form-group col-4">
-                                          <label for="car_fuel_type">Car Number</label>
+                                          <label for="car_fuel_type">Car Number<span
+                                                  style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="car_number" name="car_number"
                                               placeholder="Enter Car Number" value="{{ old('car_number') }}">
                                           @error('car_number')
@@ -90,29 +92,32 @@
                                   </div>
                                   <div class="row">
                                       <div class="form-group col-md-4">
-                                          <label for="manufacture_year">Car Manufacture Year</label>
+                                          <label for="manufacture_year">Car Manufacture Year<span
+                                                  style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="manufacture_year"
                                               name="manufacture_year" placeholder="Enter Car Manufacture Year"
-                                              value="{{ old('manufacture_year') }}">
+                                              value="{{ old('manufacture_year') }}" required>
                                           @error('manufacture_year')
                                               <span class="text-danger">{{ $message }}</span>
                                           @enderror
                                       </div>
 
                                       <div class="form-group col-md-4">
-                                          <label for="License_expire">License Expire</label>
+                                          <label for="License_expire">License Expire<span
+                                                  style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="License_expire"
                                               name="License_expire" placeholder="Enter Car License Expire"
-                                              value="{{ old('License_expire') }}">
+                                              value="{{ old('License_expire') }}" required>
                                           @error('License_expire')
                                               <span class="text-danger">{{ $message }}</span>
                                           @enderror
                                       </div>
 
                                       <div class="form-group col-md-4">
-                                          <label for="car_color">Car Color</label>
+                                          <label for="car_color">Car Color<span
+                                                  style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="car_color" name="car_color"
-                                              placeholder="Enter Car Color" value="{{ old('car_color') }}">
+                                              placeholder="Enter Car Color" value="{{ old('car_color') }}" required>
                                           @error('car_color')
                                               <span class="text-danger">{{ $message }}</span>
                                           @enderror
@@ -120,10 +125,11 @@
                                   </div>
                                   <div class="row">
                                       <div class="form-group col-md-12">
-                                          <label for="car_images">Car Images</label>
+                                          <label for="car_images">Car Images<span
+                                                  style="color: red;">&nbsp;*</span></label>
                                           <div class="border p-1" style="border:#d0d0db 1px solid">
                                               <input type="file" class="form-control-file" id="car_images"
-                                                  name="car_images" value="{{ old('car_images') }}">
+                                                  name="car_images" value="{{ old('car_images') }}" required>
                                           </div>
                                           @error('car_images')
                                               <span class="text-danger">{{ $message }}</span>
@@ -169,7 +175,7 @@
                               <tr>
                                   <th>No</th>
                                   <th>Car Type</th>
-                                  <th>Car Model</th>
+                                  <th>Car Grade</th>
                                   <th>Car Number </th>
                                   <th>Manufacture Year</th>
                                   <th>License Expire</th>
@@ -193,10 +199,12 @@
                                       <td>{{ $cars->car_color }}</td>
                                       <td>
 
-                                          <a target="_blank" href="/carimage/{{ $cars->car_images }}">
+                                          {{-- <a target="_blank" href="/carimage/{{ $cars->car_images }}">
                                               <img src="{{ asset('carimage/' . $cars->car_images) }}" alt=""
                                                   width="65px">
-                                          </a>
+                                          </a> --}}
+                                          <img src="{{ asset('carimage/' . $cars->car_images) }}"
+                                              onclick="window.open(this.src,'_blank')" width="65px">
 
                                       </td>
                                       <td>
@@ -205,7 +213,8 @@
                                           <a href="{{ url('cars_show', $cars->id) }}" class="btn btn-success"><i
                                                   class="fa-solid fa-pen-to-square"></i></a>
 
-                                          <a href="{{ url('cars_delete', $cars->id) }}" class="btn btn-danger"><i
+                                          <a href="{{ url('cars_delete', $cars->id) }}" class="btn btn-danger"
+                                              onclick="return confirm('Are you sure you want to delete this car ?')"><i
                                                   class="fa-solid fa-trash"></i></a>
 
                                       </td>

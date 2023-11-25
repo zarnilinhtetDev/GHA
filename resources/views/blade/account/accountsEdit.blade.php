@@ -75,14 +75,16 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="account_code">Code</label>
+                                            <label for="account_code">Code<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="account_code"
-                                                name="account_code" value="{{ $accounts->account_code }}">
+                                                name="account_code" value="{{ $accounts->account_code }}" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="account_name">Name</label>
+                                            <label for="account_name">Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="account_name"
-                                                name="account_name" value="{{ $accounts->account_name }}">
+                                                name="account_name" value="{{ $accounts->account_name }}" required>
                                         </div>
 
                                     </div>

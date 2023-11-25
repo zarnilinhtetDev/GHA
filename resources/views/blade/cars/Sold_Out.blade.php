@@ -47,11 +47,11 @@
                                 <div class="row">
                                     <div class="col-md-5 form-group">
                                         <label for="">Date From :</label>
-                                        <input type="date" name="start_date" class="form-control">
+                                        <input type="date" name="start_date" class="form-control" required>
                                     </div>
                                     <div class="col-md-5 form-group">
                                         <label for="">Date To :</label>
-                                        <input type="date" name="end_date" class="form-control">
+                                        <input type="date" name="end_date" class="form-control" required>
                                     </div>
                                     <div class="col-md-3 mt-3 form-group">
                                         <input type="submit" class="btn btn-primary form-control" value="Search"
@@ -66,28 +66,36 @@
                 <section class="content">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Cars Table</h3>
+                            <h3 class="card-title">Sold Out Cars Table</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
+                                    <div class="d-flex justify-content-end">
+                                        <form action="{{ url('/soldout_search') }}" method="POST">
+                                            @csrf
+                                            <input type="text" name="search" placeholder="Search with Buyer Name.."
+                                                required>
+                                            &nbsp;&nbsp;
+                                            <button type="submit" class="btn btn-primary">Search</button>
+                                        </form>
+                                    </div>
                                     <tr>
                                         <th>Buyer Name</th>
                                         <th>Buyer Phone</th>
-                                        <th>Buyer NRC</th>
-
                                         <th>Car Type</th>
-                                        <th>Car Model</th>
+                                        <th>Car Grade</th>
                                         <th>Car Number </th>
                                         <th>Car Image</th>
                                         <th style="background-color:#A1D39E">Car Profit</th>
-
-
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+
+
 
                                     @if (isset($soldoutData))
                                         @foreach ($soldoutData as $buyer)
@@ -99,16 +107,45 @@
 
                                                 <td>{{ $buyer->buyer_name }}</td>
                                                 <td>{{ $buyer->buyer_ph }}</td>
-                                                <td>{{ $buyer->buyer_nrc }}</td>
+                                                <td>{{ htmlspecialchars($car->car_type) }}</td>
+                                                <td>{{ htmlspecialchars($car->car_model) }}</td>
+                                                <td>{{ htmlspecialchars($car->car_number) }}</td>
+                                                <td>
+
+                                                    <img src="{{ asset('carimage/' . ($buyer->car->car_images ?? 'null')) }}"
+                                                        onclick="window.open(this.src,'_blank')" width="65px">
+
+                                                </td>
+                                                <td style="background-color: #A1D39E">
+
+                                                    {{ number_format(intval(htmlspecialchars($profit)), 0, '', ',') ?? 'none' }}
 
 
+                                                <td>
+                                                    <a href="{{ url('Soldout_Detail', $car->id) }}"
+                                                        class="btn btn-warning" style="width: 100px">Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @elseif(isset($buyer))
+                                        @foreach ($buyer as $buyers)
+                                            @php
+                                                $car = $buyers->car;
+                                                $profit = $profits[$car->id];
+                                                $payment = $total_payments[$car->id];
+                                            @endphp
+
+                                            <tr>
+
+                                                <td>{{ $buyers->buyer_name }}</td>
+                                                <td>{{ $buyers->buyer_ph }}</td>
                                                 <td>{{ htmlspecialchars($car->car_type) }}</td>
                                                 <td>{{ htmlspecialchars($car->car_model) }}</td>
                                                 <td>{{ htmlspecialchars($car->car_number) }}</td>
                                                 <td>
                                                     <a target="_blank"
-                                                        href="{{ asset('carimage/' . $buyer->car->car_images) }}">
-                                                        <img src="{{ asset('carimage/' . $buyer->car->car_images) }}"
+                                                        href="{{ asset('carimage/' . $buyers->car->car_images) }}">
+                                                        <img src="{{ asset('carimage/' . $buyers->car->car_images) }}"
                                                             alt="" width="65px">
                                                     </a>
                                                 </td>
@@ -118,8 +155,8 @@
 
 
                                                 <td>
-                                                    <a href="{{ url('Soldout_Detail', $buyer->id) }}"
-                                                        class="btn btn-warning" style="width: 80px">Details</a>
+                                                    <a href="{{ url('Soldout_Detail', $car->id) }}"
+                                                        class="btn btn-warning" style="width: 100px">Details</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -128,36 +165,38 @@
                                             @php
                                                 $car = $buyer->car;
                                                 $profit = $profits[$car->id];
+                                                $payment = $total_payments[$car->id];
                                             @endphp
-                                            <tr>
+                                            @if ($payment > 0)
+                                                <tr>
 
-                                                <td>{{ $buyer->buyer_name }}</td>
-                                                <td>{{ $buyer->buyer_ph }}</td>
-                                                <td>{{ $buyer->buyer_nrc }}</td>
+                                                    <td>{{ $buyer->buyer_name }}</td>
+                                                    <td>{{ $buyer->buyer_ph }}</td>
+                                                    <td>{{ htmlspecialchars($car->car_type) }}</td>
+                                                    <td>{{ htmlspecialchars($car->car_model) }}</td>
+                                                    <td>{{ htmlspecialchars($car->car_number) }}</td>
+                                                    <td>
+                                                        <a target="_blank"
+                                                            href="{{ asset('carimage/' . $buyer->car->car_images) }}">
+                                                            <img src="{{ asset('carimage/' . $buyer->car->car_images) }}"
+                                                                alt="" width="65px">
+                                                        </a>
+                                                    </td>
+                                                    <td style="background-color: #A1D39E">
 
-
-                                                <td>{{ htmlspecialchars($car->car_type) }}</td>
-                                                <td>{{ htmlspecialchars($car->car_model) }}</td>
-                                                <td>{{ htmlspecialchars($car->car_number) }}</td>
-                                                <td>
-                                                    <a target="_blank"
-                                                        href="{{ asset('carimage/' . $buyer->car->car_images) }}">
-                                                        <img src="{{ asset('carimage/' . $buyer->car->car_images) }}"
-                                                            alt="" width="65px">
-                                                    </a>
-                                                </td>
-                                                <td style="background-color: #A1D39E">
-
-                                                    {{ number_format(intval(htmlspecialchars($profit)), 0, '', ',') ?? 'none' }}
+                                                        {{ number_format(intval(htmlspecialchars($profit)), 0, '', ',') ?? 'none' }}
 
 
-                                                <td>
-                                                    <a href="{{ url('Soldout_Detail', $buyer->id) }}"
-                                                        class="btn btn-warning" style="width: 80px">Details</a>
-                                                </td>
-                                            </tr>
+                                                    <td>
+                                                        <a href="{{ url('Soldout_Detail', $car->id) }}"
+                                                            class="btn btn-warning" style="width: 100px">Details</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     @endif
+
+
 
                                 </tbody>
                             </table>
@@ -178,4 +217,4 @@
                 </footer>
         </div>
     </div>
-    @include('master.footer')
+    @include('master.carsoldout_footer')

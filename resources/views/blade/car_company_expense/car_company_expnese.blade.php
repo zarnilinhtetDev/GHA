@@ -5,12 +5,7 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
 
-            </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -36,6 +31,9 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ url('/expense') }}">Company
+                                            Expenses</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Car/Company Expenses</li>
                                 </ol>
                             </div>
@@ -99,11 +97,11 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label for="">Date From:</label>
-                                        <input type="date" name="start_date" class="form-control">
+                                        <input type="date" name="start_date" class="form-control" required>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="">Date To:</label>
-                                        <input type="date" name="end_date" class="form-control">
+                                        <input type="date" name="end_date" class="form-control" required>
                                     </div>
                                     <div class="col-md-3 mt-3 form-group">
                                         <input type="submit" class="btn btn-primary form-control" value="Search"

@@ -92,9 +92,11 @@
                                                 @csrf
 
                                                 <div class="form-group">
-                                                    <label for="accounts_id">Account Name</label>
-                                                    <select name="account_id" class="form-control" id="account_id">
-                                                        <option value="">Select Accounts</option>
+                                                    <label for="accounts_id">Account Name <span
+                                                            style="color: red;">&nbsp;*</span></label>
+                                                    <select name="account_id" class="form-control" id="account_id"
+                                                        required>
+                                                        <option value="">Select Account</option>
 
                                                         @foreach ($account as $accounts)
                                                             <option value="{{ $accounts->id }}">
@@ -108,17 +110,21 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="transaction_code">Code</label>
+                                                    <label for="transaction_code">Code<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="transaction_code"
-                                                        name="transaction_code" placeholder="Enter Transaction Code">
+                                                        name="transaction_code" placeholder="Enter Transaction Code"
+                                                        required>
                                                     @error('transaction_code')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="transaction_name">Name</label>
+                                                    <label for="transaction_name">Name<span
+                                                            style="color: red;">&nbsp;*</span></label>
                                                     <input type="text" class="form-control" id="transaction_name"
-                                                        name="transaction_name" placeholder="Enter Transaction Name">
+                                                        name="transaction_name" placeholder="Enter Transaction Name"
+                                                        required>
                                                     @error('transaction_name')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -194,7 +200,7 @@
                                                                 class="fa-solid fa-pen-to-square"></i></a>
                                                         <a href="{{ url('transaction_delete', $transactions->id) }}"
                                                             class="btn btn-danger"
-                                                            onclick="return confirm('Are you sure you want to delete this user ?')"><i
+                                                            onclick="return confirm('Are you sure you want to delete this transaction ?')"><i
                                                                 class="fa-solid fa-trash"></i>
                                                     </td>
                                                 </tr>
