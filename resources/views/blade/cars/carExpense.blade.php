@@ -45,7 +45,10 @@
                                             <ol class="breadcrumb float-sm-right">
                                                 <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Car</a>
                                                 </li>
-
+                                                <li class="breadcrumb-item"><a
+                                                        href="{{ url('/Car_Detail', $car->id) }}">Car
+                                                        Detials</a>
+                                                </li>
                                                 <li class="breadcrumb-item active"> Car Expenses</li>
                                             </ol>
                                         </div>
@@ -244,7 +247,8 @@
                                                             class="fa-solid fa-pen-to-square"></i></a>
 
                                                     <a href="{{ route('delete.car.price', $car->id) }}"
-                                                        class="btn btn-danger"onclick="return confirm('Are you sure you want to delete?')"> <i class="fa-solid fa-trash"></i></a>
+                                                        class="btn btn-danger"onclick="return confirm('Are you sure you want to delete?')">
+                                                        <i class="fa-solid fa-trash"></i></a>
                                                 </td>
                                             </tr>
 

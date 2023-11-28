@@ -8,7 +8,7 @@
 
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto"> 
 
 
                 <li class="nav-item">
@@ -56,7 +56,7 @@
                                     <td>No</td>
                                     <th>Car Name</th>
                                     <th>Description</th>
-                                    <th>Price</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,68 +116,68 @@
                     <div class="card-header " style="background-color: #7fb1e6">
                         <h3 class="card-title text-white">Company Expense</h3>
                     </div>
-                    <!-- /.card-header -->
+                    <!-- /.card-body -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <td>No</td>
+                                    <th>Transaction</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 1;
+                                    $totalPrice = 0; // Initialize the total price variable.
+                                @endphp
+                                @if (isset($company_expenses))
+                                    @foreach ($company_expenses as $company_expense)
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $company_expense->transaction->transaction_name }}</td>
+                                            <td>{{ $company_expense->expense_date }}</td>
+                                            <td>{{ $company_expense->expense_description }}</td>
+                                            <td>{{ $company_expense->expense_price }}</td>
+
+                                            @php
+                                                $no++;
+                                                $totalPrice += $company_expense->expense_price; // Add the expense price to the total.
+                                            @endphp
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    @foreach ($search_company_expenses as $search_company_expense)
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $search_company_expense->category }}</td>
+                                            <td>{{ $search_company_expense->expense_date }}</td>
+                                            <td>{{ $search_company_expense->expense_description }}</td>
+                                            <td>{{ $search_company_expense->expense_price }}</td>
+
+                                            @php
+                                                $no++;
+                                                $totalPrice += $search_company_expense->expense_price; // Add the expense price to the total.
+                                            @endphp
+                                        </tr>
+                                    @endforeach
+                                @endif
 
 
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <td>No</td>
-                                <th>Transaction</th>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $no = 1;
-                                $totalPrice = 0; // Initialize the total price variable.
-                            @endphp
-                            @if (isset($company_expenses))
-                                @foreach ($company_expenses as $company_expense)
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $company_expense->transaction->transaction_name }}</td>
-                                        <td>{{ $company_expense->expense_date }}</td>
-                                        <td>{{ $company_expense->expense_description }}</td>
-                                        <td>{{ $company_expense->expense_price }}</td>
 
-                                        @php
-                                            $no++;
-                                            $totalPrice += $company_expense->expense_price; // Add the expense price to the total.
-                                        @endphp
-                                    </tr>
-                                @endforeach
-                            @else
-                                @foreach ($search_company_expenses as $search_company_expense)
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $search_company_expense->category }}</td>
-                                        <td>{{ $search_company_expense->expense_date }}</td>
-                                        <td>{{ $search_company_expense->expense_description }}</td>
-                                        <td>{{ $search_company_expense->expense_price }}</td>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td><strong>Total: {{ $totalPrice }}</strong></td>
+                                </tr>
+                            </tfoot>
 
-                                        @php
-                                            $no++;
-                                            $totalPrice += $search_company_expense->expense_price; // Add the expense price to the total.
-                                        @endphp
-                                    </tr>
-                                @endforeach
-                            @endif
+                        </table>
 
-
-
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="4"></td>
-                                <td><strong>Total: {{ $totalPrice }}</strong></td>
-                            </tr>
-                        </tfoot>
-
-                    </table>
-
+                    </div>
                 </div>
                 <!-- /.card-body -->
 
@@ -201,5 +201,5 @@
 
     </div>
 
-
-    @include('master.footer')
+</body>
+@include('master.footer')

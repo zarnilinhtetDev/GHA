@@ -138,6 +138,7 @@ class CarController extends Controller
                 ->join('buys', 'cars.id', '=', 'buys.car_id')
                 ->join('buyers', 'cars.id', '=', 'buyers.car_id')
                 ->leftJoin('car_expenses', 'cars.id', '=', 'car_expenses.car_id')
+                ->leftJoin('add_payments', 'cars.id', '=', 'add_payments.car_id')
                 ->where('cars.id', $car->id)
                 ->groupBy('cars.car_type', 'cars.car_model', 'cars.car_number')
                 ->first();
