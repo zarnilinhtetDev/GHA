@@ -83,8 +83,7 @@
                                 <div class="form-group col-md-12">
                                     <label for="car_images">Car Images<span style="color: red;">&nbsp;*</span></label>
                                     <div class="border p-1" style="border:#d0d0db 1px solid">
-                                        {{-- <input type="file" class="form-control-file" id="car_images"
-                                            name="car_images" required> --}}
+
 
                                         <input type="file" class="form-control-file" id="car_images"
                                             name="car_images" value="{{ $carShow->car_images }}">

@@ -47,7 +47,7 @@
                                                 </li>
                                                 <li class="breadcrumb-item"><a
                                                         href="{{ url('/Car_Detail', $car->id) }}">Car
-                                                        Detials</a>
+                                                        Details</a>
                                                 </li>
                                                 <li class="breadcrumb-item active"> Car Expenses</li>
                                             </ol>

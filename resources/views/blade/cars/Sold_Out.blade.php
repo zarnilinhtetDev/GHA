@@ -76,7 +76,7 @@
                                         <form action="{{ url('/soldout_search') }}" method="POST">
                                             @csrf
                                             <input type="text" name="search" placeholder="Search with Buyer Name.."
-                                                required>
+                                                required class="rounded ">
                                             &nbsp;&nbsp;
                                             <button type="submit" class="btn btn-primary">Search</button>
                                         </form>

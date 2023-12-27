@@ -391,7 +391,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-light" style="width:300px">Total Cost</td>
-                                <td class="fw-normal">
+                                <td class="fw-normal ">
 
                                     {{-- {{ ($buyprice->price ?? 0) + $total_expense }} --}}
                                     {{ number_format(intval(($buyprice->price ?? 0) + $total_expense), 0, '', ',') }}

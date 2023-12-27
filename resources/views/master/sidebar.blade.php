@@ -73,10 +73,23 @@
                       </a>
                   </li>
                   @if (auth()->user()->is_admin)
-                      <a class="nav-link" href="{{ url('/user') }}">
-                          <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i> Users</div>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ url('/user') }}" class="nav-link">
+                              <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i>
+                                  <p class="pl-3">Users</p>
 
-                      </a>
+                              </div>
+
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ url('/monthly_report') }}" class="nav-link">
+                              <div class="sb-nav-link-icon"><i class="fa fa-calendar"></i>
+                                  <p class="pl-3">Monthly Report</p>
+                              </div>
+
+                          </a>
+                      </li>
                   @endif
                   {{-- <li class="nav-item">
                       <a class="nav-link" href="{{ url('/user') }}">

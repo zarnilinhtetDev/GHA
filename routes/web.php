@@ -6,19 +6,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\InOutController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AddPaymentController;
 use App\Http\Controllers\ExpenseController;
 
+use App\Http\Controllers\AddPaymentController;
 use App\Http\Controllers\CarCompanyController;
 use App\Http\Controllers\CarExpenseController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\CompanyIncomeController;
+use App\Http\Controllers\MonthlyReportController;
 use App\Http\Controllers\ExpenseCategoryController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,5 +160,9 @@ Route::middleware(['auth'])->group(
         Route::post('/update_user/{id}', [UserController::class, 'update_user']);
 
         Route::get('/sold_out/filter', [CarController::class, 'filterData'])->name('filter.soldout');
+
+        //Monthly Report
+        Route::get('monthly_report', [MonthlyReportController::class, 'index']);
+        Route::get('monthly_search', [MonthlyReportController::class, 'search']);
     }
 );

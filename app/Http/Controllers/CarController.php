@@ -222,7 +222,6 @@ class CarController extends Controller
 
         $buyer = Buyer::where('buyer_name', 'LIKE', "%$keyword%")
             ->orWhere('buyer_ph', 'LIKE', "%$keyword%")
-
             ->get();
 
 

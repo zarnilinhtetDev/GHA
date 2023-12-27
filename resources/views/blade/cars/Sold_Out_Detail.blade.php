@@ -192,12 +192,7 @@
                                     <tr>
                                         <td class="fw-light" style="width:300px">Document</td>
                                         <td class="fw-normal">
-                                            <a target="_blank"
-                                                href="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}">
-                                                <img src="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}"
-                                                    alt="" width="65px">
-                                            </a>
-                                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                                             <a href="{{ asset('documentUpload/' . ($buyer->document ?? 'null')) }}"
                                                 class="btn btn-primary" download>
                                                 Download
