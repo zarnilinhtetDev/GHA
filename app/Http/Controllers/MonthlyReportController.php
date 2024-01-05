@@ -8,6 +8,7 @@ use App\Models\Buyer;
 use App\Models\Expense;
 use App\Models\AddPayment;
 use App\Models\CarExpense;
+use App\Models\CompanyIncome;
 use App\Models\InOut;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -54,10 +55,10 @@ class MonthlyReportController extends Controller
 
         $total_profit = $total_sell_price - ($total_buy_price + $total_expense);
 
-        $company_incomes = AddPayment::whereMonth('created_at', Carbon::now()->month)
+        $company_incomes = CompanyIncome::whereMonth('created_at', Carbon::now()->month)
             ->get();
         foreach ($company_incomes as $company_income)
-            $total_company_income += $company_income->add_payment;
+            $total_company_income += $company_income->company_price;
 
         $company_expenses = Expense::whereMonth('created_at', Carbon::now()->month)
             ->get();
@@ -118,11 +119,11 @@ class MonthlyReportController extends Controller
 
         $total_profit = $total_sell_price - ($total_buy_price + $total_expense);
 
-        $company_incomes = AddPayment::whereDate('created_at', '>=', $start_date)
+        $company_incomes = CompanyIncome::whereDate('created_at', '>=', $start_date)
             ->whereDate('created_at', '<=', $end_date)
             ->get();
         foreach ($company_incomes as $company_income)
-            $total_company_income += $company_income->add_payment;
+            $total_company_income += $company_income->company_price;
 
         $company_expenses = Expense::whereDate('created_at', '>=', $start_date)
             ->whereDate('created_at', '<=', $end_date)
