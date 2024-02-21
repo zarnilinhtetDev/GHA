@@ -164,5 +164,8 @@ Route::middleware(['auth'])->group(
         //Monthly Report
         Route::get('monthly_report', [MonthlyReportController::class, 'index']);
         Route::get('monthly_search', [MonthlyReportController::class, 'search']);
+
+        //Car report
+        Route::get('car_report', [MonthlyReportController::class, 'car_report']);
     }
 );

@@ -168,7 +168,7 @@
                                             <div class="modal-body">
                                                 <div class="form-group col-12">
                                                     <label for="price">Buying Price</label>
-                                                    <input type="text" class="form-control" id="price"
+                                                    <input type="number" class="form-control" id="price"
                                                         name="price" value="{{ optional($buy)->price ?? 'N/A' }}">
                                                 </div>
                                             </div>
