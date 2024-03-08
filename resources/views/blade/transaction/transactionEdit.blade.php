@@ -69,9 +69,26 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="status">Status<span style="color: red;">&nbsp;*</span></label>
+                                            <select name="status" class="form-control" id="status" required>
+                                                <option value="{{ $transaction->status }}">
+                                                    {{ ucfirst($transaction->status) }}</option>
+
+                                                <option value="in">In
+
+                                                </option>
+                                                <option value="out">Out
+
+                                                </option>
+                                            </select>
+                                            @error('status')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
 
                                         <div class="form-group">
-                                            <label for="transaction_code">Code<span
+                                            <label for="transaction_code">Amount<span
                                                     style="color: red;">&nbsp;*</span></label>
                                             <input type="text" class="form-control" id="transaction_code"
                                                 name="transaction_code" value="{{ $transaction->transaction_code }}">

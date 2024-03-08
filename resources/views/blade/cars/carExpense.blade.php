@@ -126,9 +126,9 @@
 
                                                 <div class="form-group">
                                                     <label for="expense_price">Price</label>
-                                                    <input type="text" class="form-control" id="expense_price"
+                                                    <input type="number" class="form-control" id="expense_price"
                                                         name="expense_price" placeholder="Enter Expense Amount"
-                                                        value="{{ old('expense_price') }}">
+                                                        value="{{ old('expense_price') }}" required>
 
                                                     @error('expense_price')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -183,7 +183,7 @@
                                             <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-default"
                                                     data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                                <button type="submit" class="btn btn-primary">Update</button>
                                             </div>
                                         </form>
                                         <div class="alert success" role="alert">

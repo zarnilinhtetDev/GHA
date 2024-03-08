@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buy;
 use App\Models\Car;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class BuyController extends Controller
@@ -17,9 +18,12 @@ class BuyController extends Controller
         ]);
         $carId = $request->input('car_id');
         $car = Car::find($id);
+        $setting = Setting::find(2);
         if ($car) {
             $buy = new Buy($validation);
             $buy->car_id = $car->id;
+            $buy->transaction_id = $setting->transaction_id;
+
             $buy->save();
         }
 

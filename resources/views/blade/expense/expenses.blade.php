@@ -40,8 +40,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <ol class="breadcrumb float-sm-right">
-                                                <li class="breadcrumb-item"><a
-                                                        href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                                                 <li class="breadcrumb-item active"> Company Expense</li>
                                             </ol>
                                         </div>
@@ -51,19 +50,19 @@
                             </section>
 
                             @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                </div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                            </div>
                             @endif
                             @if (session('deleteStatus'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('deleteStatus') }}
-                                </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('deleteStatus') }}
+                            </div>
                             @endif
                             @if (session('updateStatus'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('updateStatus') }}
-                                </div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('updateStatus') }}
+                            </div>
                             @endif
 
 
@@ -73,31 +72,27 @@
                                     <div class="col-md-12 d-flex justify-content-end">
 
                                         {{-- <a href="{{ route('expense-category') }}">
-                                            <button type="button" class="btn btn-default text-white mr-2"
-                                                style="background-color: #007BFF">
-                                                Expenses Category
-                                            </button>
+                                        <button type="button" class="btn btn-default text-white mr-2" style="background-color: #007BFF">
+                                            Expenses Category
+                                        </button>
                                         </a>
 
                                         <a href="{{ url('/daily_expense') }}" class="ml-auto">
-                                            <button type="button" class="btn btn-default text-white"
-                                                style="background-color: #007BFF">
+                                            <button type="button" class="btn btn-default text-white" style="background-color: #007BFF">
                                                 ‌Daily Expenses
                                             </button>
                                         </a> --}}
-                                        <a type="submit" class="btn btn-default text-white mr-2" data-toggle="modal"
-                                            data-target="#modal-lg" style="background-color: #007BFF">
+                                        <a type="submit" class="btn btn-default text-white mr-2" data-toggle="modal" data-target="#modal-lg" style="background-color: #007BFF">
                                             Company Expense
                                         </a>
-                                        <a href="{{ url('/inout') }}" class="ml-6">
+                                        <!-- <a href="{{ url('/inout') }}" class="ml-6">
                                             <button type="button" class="btn btn-default text-white mr-2"
                                                 style="background-color: #007BFF">
                                                 ‌ပေးရန်/ရရန်
                                             </button>
-                                        </a>
+                                        </a> -->
                                         <a href="{{ url('car_company_expense') }}" class="ml-6">
-                                            <button type="button" class="btn btn-default text-white mr-2"
-                                                style="background-color:#5A6268">
+                                            <button type="button" class="btn btn-default text-white mr-2" style="background-color:#5A6268">
                                                 Car/Company Expenses
                                             </button>
                                         </a>
@@ -112,8 +107,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h4 class="modal-title">Company Expense Register</h4>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -121,11 +115,9 @@
                                             <form action="{{ url('/expense_register') }}" method="POST">
                                                 @csrf
 
-                                                <div class="form-group">
-                                                    <label for="transaction_id">Transaction Name<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <select name="transaction_id" class="form-control"
-                                                        id="transaction_id" required>
+                                                <!-- <div class="form-group">
+                                                    <label for="transaction_id">Transaction Name<span style="color: red;">&nbsp;*</span></label>
+                                                    <select name="transaction_id" class="form-control" id="transaction_id" required>
                                                         <option value="">Select Transaction
                                                             @foreach ($transaction as $transactions)
                                                         <option value="{{ $transactions->id }}">
@@ -135,45 +127,36 @@
                                                         </option>
                                                     </select>
                                                     @error('transaction_id')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
-                                                </div>
+                                                </div> -->
 
                                                 <div class="form-group">
-                                                    <label for="expense_date">Date<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input class="form-control" type="date" name="expense_date"
-                                                        id="expense_date" placeholder="Enter Date"
-                                                        value="{{ old('expense_date') }}" required>
+                                                    <label for="expense_date">Date<span style="color: red;">&nbsp;*</span></label>
+                                                    <input class="form-control" type="date" name="expense_date" id="expense_date" placeholder="Enter Date" value="{{ old('expense_date') }}" required>
                                                     @error('expense_date')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="expense_price">Amount<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input type="text" class="form-control" id="expense_price"
-                                                        name="expense_price" placeholder="Enter Expense Price"
-                                                        value="{{ old('expense_price') }}" required>
+                                                    <label for="expense_price">Amount<span style="color: red;">&nbsp;*</span></label>
+                                                    <input type="text" class="form-control" id="expense_price" name="expense_price" placeholder="Enter Expense Price" value="{{ old('expense_price') }}" required>
                                                     @error('expense_price')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
 
                                                 <div class="form-group">
                                                     <label>Description</label>
-                                                    <textarea class="form-control" rows="3" placeholder="Enter ..." style="border-color:#6B7280"
-                                                        name="expense_description"></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Enter ..." style="border-color:#6B7280" name="expense_description"></textarea>
                                                 </div>
 
                                                 <!-- /.card-body -->
                                                 <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        style="background-color: #007BFF">Register</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" style="background-color: #007BFF">Register</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -190,17 +173,14 @@
                                             <div class="row">
                                                 <div class="col-md-5 form-group">
                                                     <label for="">Date From :</label>
-                                                    <input type="date" name="start_date" class="form-control"
-                                                        required>
+                                                    <input type="date" name="start_date" class="form-control" required>
                                                 </div>
                                                 <div class="col-md-5 form-group">
                                                     <label for="">Date To :</label>
-                                                    <input type="date" name="end_date" class="form-control"
-                                                        required>
+                                                    <input type="date" name="end_date" class="form-control" required>
                                                 </div>
                                                 <div class="col-md-3 mt-3 form-group">
-                                                    <input type="submit" class="btn btn-primary form-control"
-                                                        value="Search" style="background-color: #218838">
+                                                    <input type="submit" class="btn btn-primary form-control" value="Search" style="background-color: #218838">
                                                 </div>
 
                                             </div>
@@ -229,56 +209,51 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                                $no = '1';
-                                                $totalExpensePrice = 0.0;
+                                            $no = '1';
+                                            $totalExpensePrice = 0.0;
                                             @endphp
                                             @if (isset($companyExpense))
-                                                @foreach ($companyExpense as $comexpense)
-                                                    <tr>
-                                                        <td>{{ $no }}</td>
-                                                        <td>
-                                                            {{ $comexpense->transaction->transaction_name }}
-                                                        </td>
-                                                        <td>{{ $comexpense->expense_date }}</td>
-                                                        <td>{{ $comexpense->expense_description }}</td>
-                                                        <td>{{ $comexpense->expense_price }}</td>
-                                                        <td>
-                                                            <a href="{{ url('expense_show', $comexpense->id) }}"
-                                                                class="btn btn-success"><i
-                                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                                            <a href="{{ url('expense_delete', $comexpense->id) }}"
-                                                                class="btn btn-danger"
-                                                                onclick="return confirm('Are you sure you want to delete?')"><i
-                                                                    class="fa-solid fa-trash"></i>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                @foreach ($expense as $expenses)
-                                                    <tr>
-                                                        <td>{{ $no }}</td>
-                                                        <td>
+                                            @foreach ($companyExpense as $comexpense)
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>
+                                                    @if ($comexpense)
+                                                    {{ $comexpense->transaction->transaction_name }}
+                                                    @else
+                                                    N/A
+                                                    @endif
 
-                                                            {{ $expenses->transaction->transaction_name }}
-                                                        </td>
-                                                        <td>{{ $expenses->expense_date }}</td>
-                                                        <td>{{ $expenses->expense_description }}</td>
-                                                        <td>{{ $expenses->expense_price }}</td>
-                                                        <td>
-                                                            <a href="{{ url('expense_show', $expenses->id) }}"
-                                                                class="btn btn-success"><i
-                                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                                            <a href="{{ url('expense_delete', $expenses->id) }}"
-                                                                class="btn btn-danger"
-                                                                onclick="return confirm('Are you sure you want to delete?')"><i
-                                                                    class="fa-solid fa-trash"></i>
-                                                        </td>
-                                                    </tr>
-                                                    @php
-                                                        $no++;
-                                                        $totalExpensePrice += $expenses->expense_price;
-                                                    @endphp
-                                                @endforeach
+                                                </td>
+                                                <td>{{ $comexpense->expense_date }}</td>
+                                                <td>{{ $comexpense->expense_description }}</td>
+                                                <td>{{ $comexpense->expense_price }}</td>
+                                                <td>
+                                                    <a href="{{ url('expense_show', $comexpense->id) }}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="{{ url('expense_delete', $comexpense->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')"><i class="fa-solid fa-trash"></i>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @else
+                                            @foreach ($expense as $expenses)
+                                            <tr>
+                                                <td>{{ $no }}</td>
+                                                <td>
+
+                                                    {{ $expenses->transaction->transaction_name}}
+                                                </td>
+                                                <td>{{ $expenses->expense_date }}</td>
+                                                <td>{{ $expenses->expense_description }}</td>
+                                                <td>{{ $expenses->expense_price }}</td>
+                                                <td>
+                                                    <a href="{{ url('expense_show', $expenses->id) }}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="{{ url('expense_delete', $expenses->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')"><i class="fa-solid fa-trash"></i>
+                                                </td>
+                                            </tr>
+                                            @php
+                                            $no++;
+                                            $totalExpensePrice += $expenses->expense_price;
+                                            @endphp
+                                            @endforeach
 
                                             @endif
                                         </tbody>

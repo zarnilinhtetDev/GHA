@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Expense;
+use App\Models\Setting;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -22,23 +24,22 @@ class ExpenseController extends Controller
     {
 
         $request->validate([
-            'transaction_id' => 'required',
+
             'expense_date' => 'required',
             'expense_price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
-        ], ['transaction_id' => 'The transaction name is required']);
+        ], ['account_id' => 'The Account name is required']);
 
         $expense = new Expense();
         $expense->expense_date = $request->expense_date;
         $expense->expense_description = $request->expense_description;
         $expense->expense_price = $request->expense_price;
 
-        $transaction = Transaction::find($request->input('transaction_id'));
-
-        // if (!$transaction) {
-        //     return redirect()->back()->with('error', 'Transaction not found');
-        // }
-
-        $transaction->expenses()->save($expense);
+        $setting = Setting::find(4);
+        // $transaction = Transaction::find($request->input('transaction_id'));
+        $expense->transaction_id = $setting->transaction_id;
+        $expense->account_id = 0;
+        $expense->save();
+        // $transaction->expenses()->save($expense);
 
         return redirect()->back()->with('success', 'Company Expense Register is Successfull');
     }
@@ -56,16 +57,16 @@ class ExpenseController extends Controller
     {
 
         $expenseData = Expense::find($id);
-        $transaction = Transaction::all();
-        return view('blade.expense.expensesEdit', compact('expenseData', 'transaction'));
+        $account = Account::all();
+        return view('blade.expense.expensesEdit', compact('expenseData', 'account'));
     }
 
     public function update(Request $request, $id)
     {
 
         $expense = Expense::find($id);
-        if ($expense->transaction_id != $request->input('transaction_id')) {
-            $expense->account()->associate(Transaction::find($request->input('transaction_id')));
+        if ($expense->account_id != $request->input('account_id')) {
+            $expense->account()->associate(Account::find($request->input('account_id')));
         }
         $expense->update([
             'expense_date' => $request->input('expense_date'),

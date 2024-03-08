@@ -73,24 +73,18 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="transaction_id">Transaction Name<span
+                                            <label for="transaction_id">Account Name<span
                                                     style="color: red;">&nbsp;*</span></label>
-                                            <select name="transaction_id" class="form-control" id="transaction_id"
-                                                required>
-                                                <option value="">Select Transaction</option>
-
-                                                @foreach ($transaction as $transactions)
-                                                    @if ($expenseData->transaction_id == $transactions->id)
-                                                        <option value="{{ $transactions->id }}" selected>
-                                                            {{ $transactions->transaction_name }}
-                                                        </option>
-                                                    @else
-                                                        <option value="{{ $transactions->id }}">
-                                                            {{ $transactions->transaction_name }}
-                                                        </option>
-                                                    @endif
+                                            <select name="account_id" class="form-control" id="account_id" required>
+                                                <option value="{{ $expenseData->account_id }}" selected>
+                                                    {{ $expenseData->account->account_name }}
+                                                </option>
+                                                @foreach ($account as $acc)
+                                                    <option value="{{ $acc->id }}">
+                                                        {{ $acc->account_name }}
+                                                    </option>
                                                 @endforeach
-                                                re
+
                                             </select>
                                         </div>
 

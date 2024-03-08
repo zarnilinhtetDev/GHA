@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Buyer;
+use App\Models\Setting;
 use App\Models\AddPayment;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,12 @@ class AddPaymentController extends Controller
         ]);
         $carId = $request->input('car_id');
         $car = Car::find($id);
+        $setting = Setting::find(5);
         if ($car) {
             $payment = new AddPayment($validation);
             $payment->car_id = $car->id;
+            $payment->transaction_id = $setting->transaction_id;
+
             $payment->save();
         }
         return redirect()->back()->with('payment_store', 'Add Payment Price is Successful');

@@ -46,59 +46,52 @@
                 </div><!-- /.container-fluid -->
             </section>
             @if (session('soldout'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('soldout') }}
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('soldout') }}
+            </div>
             @endif
 
             @if (session('buySuccess'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('buySuccess') }}
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('buySuccess') }}
+            </div>
             @endif
             @if (session('offerSuccess'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('offerSuccess') }}
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('offerSuccess') }}
+            </div>
             @endif
             <div class="card">
                 <div class=" p-4">
                     <div class="card-header" style="">
                         <h4 style="font-size: 18px" class="fw-semibold">
                             @if (isset($buyprice))
-                                @if ($buyprice->car_id == $carDetail->id)
-                                    <a class="btn btn-primary btn-default text-white btn-outline-accent-5 btn-md mr-1"
-                                        style="background-color:#007BFF">
-                                        Buying Price
-                                    </a>
-                                @endif
+                            @if ($buyprice->car_id == $carDetail->id)
+                            <a class="btn btn-primary btn-default text-white btn-outline-accent-5 btn-md mr-1" style="background-color:#007BFF">
+                                Buying Price
+                            </a>
+                            @endif
                             @else
-                                <a href="{{ url('Buying_Price', $carDetail->id) }}"
-                                    class="btn btn-primary btn-default text-white btn-outline-accent-5 btn-md mr-1"
-                                    style="background-color:#007BFF" data-toggle="modal" data-target="#modal-default">
-                                    Buying Price
-                                </a>
+                            <a href="{{ url('Buying_Price', $carDetail->id) }}" class="btn btn-primary btn-default text-white btn-outline-accent-5 btn-md mr-1" style="background-color:#007BFF" data-toggle="modal" data-target="#modal-default">
+                                Buying Price
+                            </a>
 
                             @endif
 
-                            <a href="{{ url('car_expense', $carDetail->id) }}"
-                                class="btn btn-primary btn-default  text-white btn-outline-accent-5 btn-md mr-1"
-                                style = "background-color:#007BFF">
+                            <a href="{{ url('car_expense', $carDetail->id) }}" class="btn btn-primary btn-default  text-white btn-outline-accent-5 btn-md mr-1" style="background-color:#007BFF">
                                 Car Expenses</a>
 
 
 
                             @if (@isset($carstatus))
 
-                                @if ($carDetail->id == $carstatus->car_id)
-                                    <button type="button" class="btn btn-default text-white mutted"
-                                        style="background-color: #dc3545">Sold Out </button>
-                                @endif
+                            @if ($carDetail->id == $carstatus->car_id)
+                            <button type="button" class="btn btn-default text-white mutted" style="background-color: #dc3545">Sold Out </button>
+                            @endif
                             @else
-                                <a href="{{ url('Buying_Price', $carDetail->id) }}" class="btn btn-default text-white"
-                                    data-toggle="modal" data-target="#modal-lg" style = "background-color:#dc3545">
-                                    Sold Out
-                                </a>
+                            <a href="{{ url('Buying_Price', $carDetail->id) }}" class="btn btn-default text-white" data-toggle="modal" data-target="#modal-lg" style="background-color:#dc3545">
+                                Sold Out
+                            </a>
                             @endif
 
                         </h4>
@@ -115,44 +108,37 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('BuyingCar', ['id' => $carDetail->id]) }}" method="POST"
-                                        enctype="multipart/form-data" id="salesForm">
+                                    <form action="{{ route('BuyingCar', ['id' => $carDetail->id]) }}" method="POST" enctype="multipart/form-data" id="salesForm">
                                         @csrf
 
                                         <div class="modal-body">
                                             <div class="form-group col-12 " style="display: none">
                                                 <label for="car_id">Car Type</label>
-                                                <input type="text" name="car_id" class="form-control" id="car_id"
-                                                    value="{{ $carDetail->id }}" placeholder="Enter Buying Price">
+                                                <input required type="text" name="car_id" class="form-control" id="car_id" value="{{ $carDetail->id }}" placeholder="Enter Buying Price">
 
 
                                             </div>
+                                            <input type="hidden" name="car_number" value="{{$carDetail->car_number}}">
                                             <div class="modal-body">
                                                 <div class="form-group col-12">
-                                                    <label for="price">Buyer Name <span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input type="text" class="form-control" id="buyer_name"
-                                                        name="buyer_name" placeholder="Enter Buyer Name">
+                                                    <label for="price">Buyer Name <span style="color: red;">&nbsp;*</span></label>
+                                                    <input required type="text" class="form-control" id="buyer_name" name="buyer_name" placeholder="Enter Buyer Name">
                                                     @error('buyer_name')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group col-12">
-                                                    <label for="price">Selling Price<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input type="text" class="form-control" id="selling"
-                                                        name="selling" placeholder="Enter Selling Price">
+                                                    <label for="price">Selling Price<span style="color: red;">&nbsp;*</span></label>
+                                                    <input required type="number" class="form-control" id="selling" name="selling" placeholder="Enter Selling Price">
                                                     @error('selling')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group col-12">
-                                                    <label for="price">Payment<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input type="text" class="form-control" id="payment"
-                                                        name="payment" placeholder="Enter Payment">
+                                                    <label for="price">Payment<span style="color: red;">&nbsp;*</span></label>
+                                                    <input required type="number" class="form-control" id="payment" name="payment" placeholder="Enter Payment">
                                                     @error('payment')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
@@ -177,38 +163,32 @@
 
                                                         window.addEventListener('load', updateBalance);
                                                     </script>
-                                                    <input type="text" class="form-control" id="balance"
-                                                        name="balance">
+                                                    <input type="number" class="form-control" id="balance" name="balance">
                                                     @error('balance')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="form-group col-12">
-                                                    <label for="price">Buyer Phone Number<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input type="text" class="form-control" id="buyer_ph"
-                                                        name="buyer_ph" placeholder="Enter Buyer Phone Number">
+                                                    <label for="price">Buyer Phone Number<span style="color: red;">&nbsp;*</span></label>
+                                                    <input required type="text" class="form-control" id="buyer_ph" name="buyer_ph" placeholder="Enter Buyer Phone Number">
                                                     @error('buyer_ph')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
 
                                                 <div class="form-group col-12">
-                                                    <label for="price">Document<span
-                                                            style="color: red;">&nbsp;*</span></label>
-                                                    <input type="file" class="form-control" id="document"
-                                                        name="document">
+                                                    <label for="price">Document<span style="color: red;">&nbsp;*</span></label>
+                                                    <input required type="file" class="form-control" id="document" name="document">
                                                     @error('document')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default"
-                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </div>
                                     </form>
@@ -236,30 +216,21 @@
                                 <div class="modal-body">
                                     <div class="form-group col-12">
                                         <label for="price">Buying Price</label>
-                                        <input type="text" class="form-control" id="price" name="price">
+                                        <input type="number" class="form-control" id="price" name="price">
                                     </div>
                                 </div>
                                 <div class="modal-body" style="display: none">
                                     <div class="form-group col-12">
                                         <label for="car_id">Car Type</label>
-                                        <input type="text" name="car_id" class="form-control" id="car_id"
-                                            value="{{ $carDetail->id }}" placeholder="Enter Buying Price">
+                                        <input type="text" name="car_id" class="form-control" id="car_id" value="{{ $carDetail->id }}" placeholder="Enter Buying Price">
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default"
-                                        data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Add</button>
                                 </div>
                             </form>
-                            <div class="alert success" role="alert">
-                                {{-- {{ $buyprice->price }} --}}
-                                @if (isset($buyprice))
-                                    Current Buying Price - {{ $buyprice->price }}
-                                @else
-                                    N/A
-                                @endif
-                            </div>
+
                         </div>
 
                     </div>
@@ -277,15 +248,13 @@
                                     </td>
                                     <td>
                                         @if (isset($carstatus) && $carDetail->id == $carstatus->car_id)
-                                            <button type="button" class="btn btn-default text-white mutted"
-                                                style="background-color: #dc3545">
-                                                Sold Out
-                                            </button>
+                                        <button type="button" class="btn btn-default text-white mutted" style="background-color: #dc3545">
+                                            Sold Out
+                                        </button>
                                         @else
-                                            <button type="button" class="btn btn-default text-white"
-                                                style="background-color:#047c40">
-                                                Available
-                                            </button>
+                                        <button type="button" class="btn btn-default text-white" style="background-color:#047c40">
+                                            Available
+                                        </button>
                                         @endif
                                     </td>
 
@@ -320,8 +289,7 @@
 
                                     <td class="fw-light" style="width:300px">Car Image</td>
                                     <td>
-                                        <img src="{{ asset('carimage/' . $carDetail->car_images) }}"
-                                            onclick="window.open(this.src,'_blank')" width="65px">
+                                        <img src="{{ asset('carimage/' . $carDetail->car_images) }}" onclick="window.open(this.src,'_blank')" width="65px">
 
                                     </td>
                                 </tr>
@@ -351,14 +319,14 @@
                                 <td class="fw-normal">
 
                                     @if ($buyprice)
-                                        @if ($buyprice->car_id == $carDetail->id)
-                                            {{-- {{ $buyprice->price }} --}}
-                                            {{ number_format(intval($buyprice->price), 0, '', ',') }}
-                                        @else
-                                            N/A
-                                        @endif
+                                    @if ($buyprice->car_id == $carDetail->id)
+                                    {{-- {{ $buyprice->price }} --}}
+                                    {{ number_format(intval($buyprice->price), 0, '', ',') }}
+                                    @else
+                                    N/A
+                                    @endif
                                 </td>
-                            @else
+                                @else
                                 N/A
                                 @endif
 
@@ -369,15 +337,15 @@
                                 <td class="fw-light" style="width:300px">Total Expense</td>
                                 <td class="fw-normal">
                                     @php
-                                        $total_expense = 0;
+                                    $total_expense = 0;
                                     @endphp
 
                                     @foreach ($carexpenses as $carexpense)
-                                        @if ($carexpense->car_id == $carDetail->id)
-                                            @php
-                                                $total_expense += $carexpense->expense_price;
-                                            @endphp
-                                        @endif
+                                    @if ($carexpense->car_id == $carDetail->id)
+                                    @php
+                                    $total_expense += $carexpense->expense_price;
+                                    @endphp
+                                    @endif
                                     @endforeach
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buy;
 use App\Models\Car;
+use App\Models\Setting;
 use App\Models\CarExpense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,10 +28,12 @@ class CarExpenseController extends Controller
             'description' => 'required',
             'expense_price' => 'required|numeric',
         ]);
-
+        $setting = Setting::find(3);
         $car = Car::findOrFail($id);
 
         $carExpense = new CarExpense($data);
+        $carExpense->transaction_id = $setting->transaction_id;
+
         $car->carExpenses()->save($carExpense);
 
         return redirect()->back()->with('success', 'Car expense added successfully');

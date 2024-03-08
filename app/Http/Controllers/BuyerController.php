@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Car;
 use App\Models\Buyer;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,9 +21,11 @@ class BuyerController extends Controller
             'buyer_ph' => 'required',
             'document' => 'required|file|mimes:jpeg,png,pdf|max:1024'
         ], ['document' => 'Document must be less than 1 MB']);
-
+        $setting = Setting::find(1);
         $buyer = new Buyer($data);
+        $buyer->transaction_id = $setting->transaction_id;
         $buyer->car_id = $id;
+        $buyer->car_number = $request->car_number;
 
         $buyer->buyer_name = $request->input('buyer_name');
         $buyer->selling = $request->input('selling');

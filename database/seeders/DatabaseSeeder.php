@@ -23,5 +23,10 @@ class DatabaseSeeder extends Seeder
 
 
         ]);
+        $string = ['car_sale', 'car_buy', 'car_expense', 'company_expense', 'car_balance_payment'];
+        foreach ($string as $str)
+            \App\Models\Setting::create([
+                'category' => $str,
+            ]);
     }
 }

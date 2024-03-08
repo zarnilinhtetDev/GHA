@@ -55,7 +55,7 @@ class CarController extends Controller
     {
         $car = Car::find($id);
         $car->delete();
-        return redirect()->back()->with('deleteStatus', 'Car Delete is Successfull');
+        return redirect()->back()->with('deleteStatus', 'Car Delete is Successful');
     }
 
     public function show($id)
@@ -86,7 +86,7 @@ class CarController extends Controller
 
         $car->update();
 
-        return redirect('/dashboard')->with('updateStatus', 'Car Update is Successfull');
+        return redirect('/dashboard')->with('updateStatus', 'Car Update is Successful');
     }
     public function car_detail($id)
     {
@@ -220,9 +220,10 @@ class CarController extends Controller
 
 
 
-        $buyer = Buyer::where('buyer_name', 'LIKE', "%$keyword%")
+        $buyer = Buyer::where('car_number', 'LIKE', "%$keyword%")
             ->orWhere('buyer_ph', 'LIKE', "%$keyword%")
             ->get();
+
 
 
 

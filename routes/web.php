@@ -13,6 +13,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExpenseController;
 
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AddPaymentController;
 use App\Http\Controllers\CarCompanyController;
 use App\Http\Controllers\CarExpenseController;
@@ -50,9 +51,7 @@ Route::middleware(['auth'])->group(
 
 
         //Car
-
         Route::match(['get', 'post'], '/cars_register', [CarController::class, 'carsRegister']);
-
         Route::get('/cars_delete/{id}', [CarController::class, 'delete']);
         Route::get('/cars_show/{id}', [CarController::class, 'show']);
         Route::post('/cars_update/{id}', [CarController::class, 'update']);
@@ -67,7 +66,7 @@ Route::middleware(['auth'])->group(
 
         //SoldOut
         Route::get('/sold_out_car', [CarController::class, 'soldcar']);
-        // Route::get('/soldcar/{id}', [CarController::class, 'soldcar']);
+
         Route::get('/Soldout_Detail/{id}', [CarController::class, 'Soldout_Detail']);
 
         Route::any('/soldout_search', [CarController::class, 'search']);
@@ -121,7 +120,8 @@ Route::middleware(['auth'])->group(
         Route::get('/transaction_delete/{id}', [TransactionController::class, 'delete']);
         Route::get('/transaction_show/{id}', [TransactionController::class, 'show']);
         Route::post('/transaction_update/{id}', [TransactionController::class, 'update']);
-
+        Route::put('/payment_update/{id}', [TransactionController::class, 'payment_update'])->name('payment.update');
+        Route::get('/payment_edit/{id}', [TransactionController::class, 'payment_edit']);
         //Company Income
         Route::get('/company_income', [CompanyIncomeController::class, 'company']);
         Route::post('/companyincome_register', [CompanyIncomeController::class, 'incomeRegister']);
@@ -164,8 +164,34 @@ Route::middleware(['auth'])->group(
         //Monthly Report
         Route::get('monthly_report', [MonthlyReportController::class, 'index']);
         Route::get('monthly_search', [MonthlyReportController::class, 'search']);
+        Route::get('/monthly_report/filter', [MonthlyReportController::class, 'filterData'])->name('filter.soldout');
 
         //Car report
         Route::get('car_report', [MonthlyReportController::class, 'car_report']);
+
+
+        //Account Report
+        Route::get('account_report', [MonthlyReportController::class, 'account_report']);
+
+        Route::get('account_transaction/{id}', [MonthlyReportController::class, 'transactions']);
+        Route::post('monthly_transaction_search/{id}', [MonthlyReportController::class, 'search_transactions']);
+
+        //setting
+        Route::get('setting', [SettingController::class, 'index'])->name('setting');
+        Route::get('car_sale', [SettingController::class, 'car_sale']);
+        Route::post('car_sale/edit', [SettingController::class, 'car_saleEdit']);
+        Route::get('car_buy', [SettingController::class, 'car_buy']);
+        Route::post('car_buy/edit', [SettingController::class, 'car_buyEdit']);
+        Route::get('company_expense', [SettingController::class, 'company_expense']);
+        Route::get('car_expense', [SettingController::class, 'car_expense']);
+        Route::get('car_balance_payment', [SettingController::class, 'car_balance_payment']);
+        Route::post('company_expense/edit', [SettingController::class, 'company_expenseEdit']);
+        Route::post('car_balance_payment/edit', [SettingController::class, 'car_balance_paymentEdit']);
+        Route::post('car_expense/edit', [SettingController::class, 'car_expenseEdit']);
+
+
+        Route::get('/payment/{id}', [TransactionController::class, 'payment']);
+        Route::post('/payment_register/{id}', [TransactionController::class, 'payment_register']);
+        Route::get('/payment_delete/{id}', [TransactionController::class, 'payment_delete']);
     }
 );

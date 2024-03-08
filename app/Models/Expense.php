@@ -11,6 +11,10 @@ class Expense extends Model
 
     protected $guarded = [];
 
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
     public function transaction()
     {
         return $this->belongsTo(Transaction::class);

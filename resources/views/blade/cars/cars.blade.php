@@ -84,7 +84,7 @@
                                           <label for="car_fuel_type">Car Number<span
                                                   style="color: red;">&nbsp;*</span></label>
                                           <input type="text" class="form-control" id="car_number" name="car_number"
-                                              placeholder="Enter Car Number" value="{{ old('car_number') }}">
+                                              placeholder="Enter Car Number" value="{{ old('car_number') }}" required>
                                           @error('car_number')
                                               <span class="text-danger">{{ $message }}</span>
                                           @enderror
@@ -125,7 +125,7 @@
                                   </div>
                                   <div class="row">
                                       <div class="form-group col-md-12">
-                                          <label for="car_images">Car Images<span
+                                          <label for="car_images">Car Image<span
                                                   style="color: red;">&nbsp;*</span></label>
                                           <div class="border p-1" style="border:#d0d0db 1px solid">
                                               <input type="file" class="form-control-file" id="car_images"
