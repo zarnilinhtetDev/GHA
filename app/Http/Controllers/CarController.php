@@ -146,7 +146,13 @@ class CarController extends Controller
             $profit = $buyer->selling - ($buyprice ? $buyprice->price : 0) - ($data ? $data->total_expense_price : 0);
 
             $profits[$car->id] = $profit;
-            $total_payment = $buyer->selling - ($buyer->payment + $payment->tot_payment);
+
+            $selling = is_numeric($buyer->selling) ? $buyer->selling : 0;
+            $buyer_payment = is_numeric($buyer->payment) ? $buyer->payment : 0;
+            $payment_total = is_numeric($payment->tot_payment) ? $payment->tot_payment : 0;
+
+            // Perform the arithmetic operation
+            $total_payment = $selling - ($buyer_payment + $payment_total);
             $total_payments[$car->id] = $total_payment;
         }
 
@@ -269,9 +275,15 @@ class CarController extends Controller
             $profit = $buyers->selling - ($buyprice ? $buyprice->price : 0) - ($data ? $data->total_expense_price : 0);
 
             $profits[$car->id] = $profit;
-            // $total_payment = $buyers->selling - ($buyers->payment + $data->total_payment_amount);
-            $total_payment = $buyers->selling - ($buyers->payment + optional($data)->total_payment_amount);
 
+            // $total_payment = $buyers->selling - ($buyers->payment + optional($data)->total_payment_amount);
+            // $total_payment = $buyer->selling - ($buyer->payment + $payment->tot_payment);
+            $selling = is_numeric($buyer->selling) ? $buyer->selling : 0;
+            $buyer_payment = is_numeric($buyer->payment) ? $buyer->payment : 0;
+            $payment_total = is_numeric(optional($data)->total_payment_amount->tot_payment) ? optional($data)->total_payment_amount : 0;
+
+            // Perform the arithmetic operation
+            $total_payment = $selling - ($buyer_payment + $payment_total);
             $total_payments[$car->id] = $total_payment;
         }
 

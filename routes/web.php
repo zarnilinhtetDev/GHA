@@ -192,6 +192,6 @@ Route::middleware(['auth'])->group(
 
         Route::get('/payment/{id}', [TransactionController::class, 'payment']);
         Route::post('/payment_register/{id}', [TransactionController::class, 'payment_register']);
-        Route::get('/payment_delete/{id}', [TransactionController::class, 'payment_delete']);
+        Route::get('/transaction_delete_payment/{id}', [TransactionController::class, 'payment_delete']);
     }
 );

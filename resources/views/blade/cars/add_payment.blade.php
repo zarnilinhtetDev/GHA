@@ -51,27 +51,26 @@
                 <div class="container-fluid mb-4 mr-auto">
                     <div class="row">
                         <div class="col-md-12 text-end">
-                            <button type="button" class="btn btn-default text-white" style="background-color: #007BFF"
-                                data-toggle="modal" data-target="#modal-lg">
+                            <button type="button" class="btn btn-default text-white" style="background-color: #007BFF" data-toggle="modal" data-target="#modal-lg">
                                 Payment Register
                             </button>
                         </div>
                     </div>
                 </div>
                 @if (session('payment_store'))
-                    <h6 class="alert alert-success">
-                        {{ session('payment_store') }}
-                    </h6>
+                <h6 class="alert alert-success">
+                    {{ session('payment_store') }}
+                </h6>
                 @endif
                 @if (session('deleteStatus'))
-                    <h6 class="alert alert-danger">
-                        {{ session('deleteStatus') }}
-                    </h6>
+                <h6 class="alert alert-danger">
+                    {{ session('deleteStatus') }}
+                </h6>
                 @endif
                 @if (session('payment_update'))
-                    <h6 class="alert alert-success">
-                        {{ session('customer_update') }}
-                    </h6>
+                <h6 class="alert alert-success">
+                    {{ session('customer_update') }}
+                </h6>
                 @endif
                 <div class="modal fade" id="modal-lg">
                     <div class="modal-dialog">
@@ -86,21 +85,17 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group col-12">
-                                        <label for="price"> Payment Date<span
-                                                style="color: red;">&nbsp;*</span></label>
-                                        <input type="date" class="form-control" id="payment_date" name="payment_date"
-                                            placeholder="Enter Add Payment Date" required>
+                                        <label for="price"> Payment Date<span style="color: red;">&nbsp;*</span></label>
+                                        <input type="date" class="form-control" id="payment_date" name="payment_date" placeholder="Enter Add Payment Date" required>
                                         @error('payment_date')
-                                            <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group col-12">
-                                        <label for="price">Add Payment <span
-                                                style="color: red;">&nbsp;*</span></label>
-                                        <input type="text" class="form-control" id="add_payment" name="add_payment"
-                                            placeholder="Enter Add Payment" required>
+                                        <label for="price">Add Payment <span style="color: red;">&nbsp;*</span></label>
+                                        <input type="number" class="form-control" id="add_payment" name="add_payment" placeholder="Enter Add Payment" required>
                                         @error('add_payment')
-                                            <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
@@ -108,8 +103,7 @@
                                 <div class="modal-body">
                                     <div class="form-group col-12" style="display: none">
                                         <label for="car_id">Car Type</label>
-                                        <input type="text" name="car_id" class="form-control" id="car_id"
-                                            value="{{ $buyer->car_id ?? 'null' }}">
+                                        <input type="text" name="car_id" class="form-control" id="car_id" value="{{ $buyer->car_id ?? 'null' }}">
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
@@ -141,42 +135,39 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $no = '1';
+                                $no = '1';
                                 @endphp
                                 @if ($buyer)
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $buyer->created_at }}</td>
-                                        <td>{{ $buyer->payment }}</td>
-                                        <td></td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $no }}</td>
+                                    <td>{{ $buyer->created_at }}</td>
+                                    <td>{{ $buyer->payment }}</td>
+                                    <td></td>
+                                </tr>
                                 @endif
                                 @foreach ($pay as $pays)
-                                    <tr>
-                                        <td>{{ $no + 1 }}</td>
+                                <tr>
+                                    <td>{{ $no + 1 }}</td>
 
-                                        <td>{{ $pays->payment_date }}</td>
-                                        <td>{{ $pays->add_payment }}</td>
+                                    <td>{{ $pays->payment_date }}</td>
+                                    <td>{{ $pays->add_payment }}</td>
 
-                                        <td>
+                                    <td>
 
-                                            <a href="{{ url('payment-edit', $pays->id) }}" class="btn btn-success"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ url('payment-edit', $pays->id) }}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                                            <a href="{{ url('payment_delete', $pays->id) }}" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete ?')"><i
-                                                    class="fa-solid fa-trash"></i></a>
+                                        <a href="{{ url('payment_delete', $pays->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete ?')"><i class="fa-solid fa-trash"></i></a>
 
 
 
-                                        </td>
+                                    </td>
 
 
-                                    </tr>
+                                </tr>
 
-                                    @php
-                                        $no++;
-                                    @endphp
+                                @php
+                                $no++;
+                                @endphp
                                 @endforeach
                                 <tr>
                                     <td colspan="2">

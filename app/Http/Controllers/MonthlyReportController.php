@@ -101,7 +101,13 @@ class MonthlyReportController extends Controller
             $profit = $buyer->selling - ($buyprice ? $buyprice->price : 0) - ($data ? $data->total_expense_price : 0);
 
             $profits[$car->id] = $profit;
-            $total_payment = $buyer->selling - ($buyer->payment + $payment->tot_payment);
+            // $total_payment = $buyer->selling - ($buyer->payment + $payment->tot_payment);
+            $selling = is_numeric($buyer->selling) ? $buyer->selling : 0;
+            $buyer_payment = is_numeric($buyer->payment) ? $buyer->payment : 0;
+            $payment_total = is_numeric($payment->tot_payment) ? $payment->tot_payment : 0;
+
+            // Perform the arithmetic operation
+            $total_payment = $selling - ($buyer_payment + $payment_total);
             $total_payments[$car->id] = $total_payment;
         }
         return view('blade.monthly_report.car_report', compact('cars', 'buyers', 'profits', 'total_payments', 'expensesByCarId'));
@@ -149,7 +155,15 @@ class MonthlyReportController extends Controller
             $profit = $buyer->selling - ($buyprice ? $buyprice->price : 0) - ($data ? $data->total_expense_price : 0);
 
             $profits[$car->id] = $profit;
-            $total_payment = $buyer->selling - ($buyer->payment + $payment->tot_payment);
+            // $total_payment = $buyer->selling - ($buyer->payment + $payment->tot_payment);
+
+            $selling = is_numeric($buyer->selling) ? $buyer->selling : 0;
+            $buyer_payment = is_numeric($buyer->payment) ? $buyer->payment : 0;
+            $payment_total = is_numeric($payment->tot_payment) ? $payment->tot_payment : 0;
+
+            // Perform the arithmetic operation
+            $total_payment = $selling - ($buyer_payment + $payment_total);
+
             $total_payments[$car->id] = $total_payment;
         }
         $start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');

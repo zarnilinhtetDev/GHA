@@ -130,7 +130,35 @@
                                     </td>
                                     <td>{{$expense}}</td>
                                     <td>
-                                        {{ number_format(intval(htmlspecialchars(($car->buyer->selling ??0)- ($buy->price ?? 0) - ($expense??0) )), 0, '', ',') }}
+                                        {{
+    number_format(
+        intval(
+            htmlspecialchars(
+                (
+                    (
+                        isset($car->buyer) && isset($car->buyer->selling) && is_numeric($car->buyer->selling) 
+                            ? $car->buyer->selling 
+                            : 0
+                    ) - 
+                    (
+                        isset($buy->price) && is_numeric($buy->price) 
+                            ? $buy->price 
+                            : 0
+                    ) - 
+                    (
+                        isset($expense) && is_numeric($expense) 
+                            ? $expense 
+                            : 0
+                    )
+                )
+            )
+        ), 
+        0, 
+        '', 
+        ','
+    ) 
+}}
+
                                     </td>
                                     <td>
                                         @if ($car->buyer)
@@ -163,7 +191,7 @@
                                         @if ($car->buyer)
                                         {{ $car->buyer->buyer_name }}
                                         @else
-                                        <p class="text-danger"></p>
+                                        <p class="text-danger">N/A</p>
                                         @endif
                                     </td>
                                     <td>
@@ -188,7 +216,36 @@
 
 
                                     <td>
-                                        {{ number_format(intval(htmlspecialchars(($car->buyer->selling ??0)- ($buy->price ?? 0) - ($expense??0) )), 0, '', ',') }}
+
+                                        {{
+    number_format(
+        intval(
+            htmlspecialchars(
+                (
+                    (
+                        isset($car->buyer) && isset($car->buyer->selling) && is_numeric($car->buyer->selling) 
+                            ? $car->buyer->selling 
+                            : 0
+                    ) - 
+                    (
+                        isset($buy->price) && is_numeric($buy->price) 
+                            ? $buy->price 
+                            : 0
+                    ) - 
+                    (
+                        isset($expense) && is_numeric($expense) 
+                            ? $expense 
+                            : 0
+                    )
+                )
+            )
+        ), 
+        0, 
+        '', 
+        ','
+    ) 
+}}
+
 
                                     </td>
                                     <td>

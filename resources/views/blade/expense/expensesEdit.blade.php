@@ -73,43 +73,36 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="transaction_id">Account Name<span
-                                                    style="color: red;">&nbsp;*</span></label>
+                                            <label for="transaction_id">Account Name<span style="color: red;">&nbsp;*</span></label>
                                             <select name="account_id" class="form-control" id="account_id" required>
                                                 <option value="{{ $expenseData->account_id }}" selected>
                                                     {{ $expenseData->account->account_name }}
                                                 </option>
                                                 @foreach ($account as $acc)
-                                                    <option value="{{ $acc->id }}">
-                                                        {{ $acc->account_name }}
-                                                    </option>
+                                                <option value="{{ $acc->id }}">
+                                                    {{ $acc->account_name }}
+                                                </option>
                                                 @endforeach
 
                                             </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="expense_date">Date<span
-                                                    style="color: red;">&nbsp;*</span></label>
-                                            <input class="form-control" type="date" name="expense_date"
-                                                id="expense_date" value="{{ $expenseData->expense_date }}"required>
+                                            <label for="expense_date">Date<span style="color: red;">&nbsp;*</span></label>
+                                            <input class="form-control" type="date" name="expense_date" id="expense_date" value="{{ $expenseData->expense_date }}" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="expense_price">Price<span
-                                                    style="color: red;">&nbsp;*</span></label>
-                                            <input type="text" class="form-control" id="expense_price"
-                                                name="expense_price" value="{{ $expenseData->expense_price }}"required>
+                                            <label for="expense_price">Amount<span style="color: red;">&nbsp;*</span></label>
+                                            <input type="number" class="form-control" id="expense_price" name="expense_price" value="{{ $expenseData->expense_price }}" required>
                                         </div>
 
 
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" placeholder="Enter ..." style="border-color:#6B7280"
-                                                name="expense_description">{{ $expenseData->expense_description }}</textarea>
+                                            <textarea class="form-control" rows="3" placeholder="Enter ..." style="border-color:#6B7280" name="expense_description">{{ $expenseData->expense_description }}</textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary"
-                                            style="background-color: #007BFF">Update</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #007BFF">Update</button>
                                     </div>
 
                                 </form>

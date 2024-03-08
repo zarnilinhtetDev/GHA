@@ -141,7 +141,7 @@
 
                                                 <div class="form-group">
                                                     <label for="expense_price">Amount<span style="color: red;">&nbsp;*</span></label>
-                                                    <input type="text" class="form-control" id="expense_price" name="expense_price" placeholder="Enter Expense Price" value="{{ old('expense_price') }}" required>
+                                                    <input type="number" class="form-control" id="expense_price" name="expense_price" placeholder="Enter Expense Price" value="{{ old('expense_price') }}" required>
                                                     @error('expense_price')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -239,7 +239,7 @@
                                                 <td>{{ $no }}</td>
                                                 <td>
 
-                                                    {{ $expenses->transaction->transaction_name}}
+                                                    {{ $expenses->transaction->transaction_name ?? 'N/A'}}
                                                 </td>
                                                 <td>{{ $expenses->expense_date }}</td>
                                                 <td>{{ $expenses->expense_description }}</td>

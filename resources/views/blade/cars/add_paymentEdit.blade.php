@@ -32,13 +32,11 @@
                                 <li class="breadcrumb-item active"><a href="{{ url('/sold_out_car') }}">Sold Out
                                         Cars</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a
-                                        href="{{ url('/Soldout_Detail', $paymentData->id) }}">Sold
+                                <li class="breadcrumb-item active"><a href="{{ url('/Soldout_Detail', $paymentData->id) }}">Sold
                                         Out Cars
                                         Details</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a
-                                        href="{{ url('payment-detail', $paymentData->id) }}">Payment</a>
+                                <li class="breadcrumb-item active"><a href="{{ url('payment-detail', $paymentData->id) }}">Payment</a>
                                 </li>
                                 <li class="breadcrumb-item active">Payment Edit</li>
                             </ol>
@@ -64,9 +62,9 @@
             </section> --}}
 
             @if (session('updateStatus'))
-                <h6 class="alert alert-success">
-                    {{ session('updateStatus') }}
-                </h6>
+            <h6 class="alert alert-success">
+                {{ session('updateStatus') }}
+            </h6>
             @endif
             <!-- Main content -->
             <section class="content">
@@ -83,19 +81,13 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group col-12">
-                                            <label for="payment_date"> Payment Date<span
-                                                    style="color: red;">&nbsp;*</span></label>
-                                            <input type="date" class="form-control" id="payment_date"
-                                                name="payment_date" placeholder="Enter Add Payment"
-                                                value="{{ $paymentData->payment_date }}"required>
+                                            <label for="payment_date"> Payment Date<span style="color: red;">&nbsp;*</span></label>
+                                            <input type="date" class="form-control" id="payment_date" name="payment_date" placeholder="Enter Add Payment" value="{{ $paymentData->payment_date }}" required>
 
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="price">Add Payment<span
-                                                    style="color: red;">&nbsp;*</span></label>
-                                            <input type="text" class="form-control" id="add_payment"
-                                                name="add_payment" placeholder="Enter Add Payment"
-                                                value="{{ $paymentData->add_payment }}"required>
+                                            <label for="price">Add Payment<span style="color: red;">&nbsp;*</span></label>
+                                            <input type="number" class="form-control" id="add_payment" name="add_payment" placeholder="Enter Add Payment" value="{{ $paymentData->add_payment }}" required>
 
                                         </div>
 
@@ -103,8 +95,7 @@
                                     <div class="modal-body">
                                         <div class="form-group col-12" style="display: none">
                                             <label for="car_id">Car Type</label>
-                                            <input type="text" name="car_id" class="form-control" id="car_id"
-                                                placeholder="Enter Buying Price" value="{{ $buyer->id ?? 'null' }}">
+                                            <input type="text" name="car_id" class="form-control" id="car_id" placeholder="Enter Buying Price" value="{{ $buyer->id ?? 'null' }}">
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">

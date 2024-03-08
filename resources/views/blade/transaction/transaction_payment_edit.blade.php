@@ -43,9 +43,9 @@
             </section>
 
             @if (session('updateStatus'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('updateStatus') }}
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('updateStatus') }}
+            </div>
             @endif
             <!-- Main content -->
             <section class="content">
@@ -67,33 +67,32 @@
                                         <label for="status">Status <span style="color: red;">*</span></label>
                                         <select name="status" class="form-control" id="status" required>
                                             <option value="{{ strtoupper($show->status) }}">
-                                                {{ strtoupper($show->status) }}</option>
+                                                {{ strtoupper($show->status) }}
+                                            </option>
                                             <option value="in">IN</option>
                                             <option value="out">OUT</option>
                                         </select>
                                         @error('status')
-                                            <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="transaction_code">Amount <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control" id="transaction_code" name="amount"
-                                            placeholder="Enter Transaction Code" required value="{{ $show->amount }}">
+                                        <input type="number" class="form-control" id="transaction_code" name="amount" placeholder="Enter Amount" required value="{{ $show->amount }}">
                                         @error('transaction_code')
-                                            <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter ...">{{ $show->description }}</textarea>
                                         @error('description')
-                                            <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="modal-footer justify-content-end">
 
-                                        <button type="submit" class="btn btn-primary"
-                                            style="background-color: #007BFF">Update</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #007BFF">Update</button>
                                     </div>
                                 </form>
                             </div>

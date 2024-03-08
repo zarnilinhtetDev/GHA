@@ -34,7 +34,7 @@
                 <section class="content-header">
                     <div class="container-fluid">
                         <div class="row ">
-                            <div class="col-sm-6"`>
+                            <div class="col-sm-6" `>
                                 <h1>Sold Out Detail</h1>
                             </div>
                             <div class="col-sm-6">
@@ -51,20 +51,20 @@
                     </div>
                 </section>
                 @if (session('successful'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('soldout') }}
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('soldout') }}
+                </div>
                 @endif
 
                 @if (session('buySuccess'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('buySuccess') }}
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('buySuccess') }}
+                </div>
                 @endif
                 @if (session('offerSuccess'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('offerSuccess') }}
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('offerSuccess') }}
+                </div>
                 @endif
                 <section class="content-body">
                     <div class="card">
@@ -101,8 +101,7 @@
                                         <td>
 
 
-                                            <img src="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}"
-                                                onclick="window.open(this.src,'_blank')" width="65px">
+                                            <img src="{{ asset('carimage/' . ($cardata->car_images ?? 'null')) }}" onclick="window.open(this.src,'_blank')" width="65px">
 
 
                                         </td>
@@ -124,8 +123,7 @@
 
 
 
-                            <a href="{{ route('payment.detail', ['id' => $buyer->car_id]) }}"
-                                class="btn btn-default text-white" style="background-color: #C82333">
+                            <a href="{{ route('payment.detail', ['id' => $buyer->car_id]) }}" class="btn btn-default text-white" style="background-color: #C82333">
                                 Add Payment
                             </a>
 
@@ -156,14 +154,16 @@
                                         <td class="fw-light" style="width:300px">Sell Price</td>
                                         <td class="fw-normal">
 
-                                            {{ number_format(intval($buyer->selling), 0, '', ',') ?? 'none' }}</td>
+                                            {{ number_format(intval($buyer->selling), 0, '', ',') ?? 'none' }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="fw-light" style="width:300px">Payment</td>
                                         <td class="fw-normal">
 
 
-                                            {{ number_format(intval($buyer->payment + (!empty($totalAmount) && isset($totalAmount[0]['total_amount']) ? $totalAmount[0]['total_amount'] : 0)), 0, '', ',') ?? 'none' }}
+                                            {{ number_format(intval($buyer->payment) + (!empty($totalAmount) && isset($totalAmount[0]['total_amount']) ? intval($totalAmount[0]['total_amount']) : 0), 0, '', ',') ?? 'none' }}
+
 
                                         </td>
                                     </tr>
@@ -172,17 +172,17 @@
                                         <td class="fw-normal">
                                             {{-- {{ $buyer->balance }} --}}
                                             @php
-                                                $buyerBalance = $buyer->balance ?? 'none';
-                                                $totalAmount = $totalAmount[0]['total_amount'] ?? 0;
+                                            $buyerBalance = $buyer->balance ?? 'none';
+                                            $totalAmount = $totalAmount[0]['total_amount'] ?? 0;
 
-                                                if ($buyerBalance !== 'none') {
-                                                    //  && $totalAmount == 'none')
-                                                    $result = $buyerBalance - $totalAmount;
-                                                    echo number_format(intval($result), 0, '', ',');
-                                                } else {
-                                                    // echo "Invalid input: One or both values are 'none'.";
-                                                    echo number_format(intval(0), 0, '', ',');
-                                                }
+                                            if ($buyerBalance !== 'none') {
+                                            // && $totalAmount == 'none')
+                                            $result = $buyerBalance - $totalAmount;
+                                            echo number_format(intval($result), 0, '', ',');
+                                            } else {
+                                            // echo "Invalid input: One or both values are 'none'.";
+                                            echo number_format(intval(0), 0, '', ',');
+                                            }
 
                                             @endphp
 
@@ -193,8 +193,7 @@
                                         <td class="fw-light" style="width:300px">Document</td>
                                         <td class="fw-normal">
 
-                                            <a href="{{ asset('documentUpload/' . ($buyer->document ?? 'null')) }}"
-                                                class="btn btn-primary" download>
+                                            <a href="{{ asset('documentUpload/' . ($buyer->document ?? 'null')) }}" class="btn btn-primary" download>
                                                 Download
                                             </a>
                                         </td>

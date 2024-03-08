@@ -19,7 +19,8 @@ class AddPaymentController extends Controller
         $pay = AddPayment::where('car_id', $id)->get();
 
         $total = AddPayment::where('car_id', $id)->sum('add_payment');
-        $totalAmount = $total + $buyer->payment;
+        $totalAmount = intval($total) + intval($buyer->payment);
+
         return view('blade.cars.add_payment', compact('payment', 'car', 'pay', 'totalAmount', 'buyer'));
     }
 
