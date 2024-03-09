@@ -45,8 +45,7 @@
                                             <ol class="breadcrumb float-sm-right">
                                                 <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Car</a>
                                                 </li>
-                                                <li class="breadcrumb-item"><a
-                                                        href="{{ url('/Car_Detail', $car->id) }}">Car
+                                                <li class="breadcrumb-item"><a href="{{ url('/Car_Detail', $car->id) }}">Car
                                                         Details</a>
                                                 </li>
                                                 <li class="breadcrumb-item active"> Car Expenses</li>
@@ -56,33 +55,31 @@
                                 </div><!-- /.container-fluid -->
                             </section>
                             @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                </div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                            </div>
                             @endif
                             @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('error') }}
-                                </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                            </div>
                             @endif
                             @if (session('deleteStatus'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('deleteStatus') }}
-                                </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('deleteStatus') }}
+                            </div>
                             @endif
                             @if (session('updateStatus'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('updateStatus') }}
-                                </div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('updateStatus') }}
+                            </div>
                             @endif
                             <div class="container-fluid mb-4">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-end">
                                             <!-- Added d-flex and justify-content-end classes -->
-                                            <button type="button" class="btn btn-default text-white"
-                                                data-toggle="modal" data-target="#modal-lg"
-                                                style="background-color: #007BFF">
+                                            <button type="button" class="btn btn-default text-white" data-toggle="modal" data-target="#modal-lg" style="background-color: #007BFF">
                                                 Cars Expenses
                                             </button>
                                         </div>
@@ -96,8 +93,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h4 class="modal-title">Car Expenses</h4>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -107,10 +103,7 @@
 
                                                 <div class="form-group " style="display:none">
                                                     <label for="expense_price">Car Name</label>
-                                                    <input type="text" value="{{ $car->id }}"
-                                                        class="form-control" id="expense_price" name="expense_price"
-                                                        placeholder="Enter Expense Amount"
-                                                        value="{{ old('expense_price') }}">
+                                                    <input type="text" value="{{ $car->id }}" class="form-control" id="expense_price" name="expense_price" placeholder="Enter Expense Amount" value="{{ old('expense_price') }}">
 
 
                                                 </div>
@@ -120,18 +113,16 @@
                                                     <textarea class="form-control" rows="3" name="description" placeholder="Enter ..."></textarea>
 
                                                     @error('description')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="expense_price">Price</label>
-                                                    <input type="number" class="form-control" id="expense_price"
-                                                        name="expense_price" placeholder="Enter Expense Amount"
-                                                        value="{{ old('expense_price') }}" required>
+                                                    <input type="number" class="form-control" id="expense_price" name="expense_price" placeholder="Enter Expense Amount" value="{{ old('expense_price') }}" required>
 
                                                     @error('expense_price')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                    <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
 
@@ -139,10 +130,8 @@
 
                                                 <!-- /.card-body -->
                                                 <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-default"
-                                                        data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary"
-                                                        style="background-color: #007BFF">Register</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" style="background-color: #007BFF">Register</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -168,30 +157,26 @@
                                             <div class="modal-body">
                                                 <div class="form-group col-12">
                                                     <label for="price">Buying Price</label>
-                                                    <input type="number" class="form-control" id="price"
-                                                        name="price" value="{{ optional($buy)->price ?? 'N/A' }}">
+                                                    <input type="number" class="form-control" id="price" name="price" value="{{ optional($buy)->price ?? 'N/A' }}">
                                                 </div>
                                             </div>
                                             <div class="modal-body" style="display :none">
                                                 <div class="form-group col-12">
                                                     <label for="car_id">Car Type</label>
-                                                    <input type="text" name="car_id" class="form-control"
-                                                        id="car_id" value="{{ $car->id }}"
-                                                        placeholder="Enter Buying Price">
+                                                    <input type="text" name="car_id" class="form-control" id="car_id" value="{{ $car->id }}" placeholder="Enter Buying Price">
                                                 </div>
                                             </div>
                                             <div class="modal-footer justify-content-between">
-                                                <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Update</button>
                                             </div>
                                         </form>
                                         <div class="alert success" role="alert">
                                             {{-- {{ $buyprice->price }} --}}
                                             @if (isset($buyprice))
-                                                Current Buying Price - {{ $buyprice->price }}
+                                            Current Buying Price - {{ $buyprice->price }}
                                             @else
-                                                {{ $buy ? $buy->price : 'N / A ' }}
+                                            {{ $buy ? $buy->price : 'N / A ' }}
                                             @endif
                                         </div>
                                     </div>
@@ -224,68 +209,68 @@
                                             <tr>
                                                 <td>
                                                     @if ($buy)
-                                                        {{ $buy->created_at }}
+                                                    {{ $buy->created_at }}
                                                 </td>
-                                            @else
+                                                @else
                                                 N/A
                                                 @endif
                                                 </td>
-                                                <td>{{ $car->car_type }} &nbsp; ( {{ $car->car_number }}) - <span
-                                                        class="text-danger">Buy</span></td>
+                                                <td>{{ $car->car_type }} &nbsp; ( {{ $car->car_number }}) - <span class="text-danger">Buy</span></td>
                                                 <td>
 
                                                     @if ($buy)
-                                                        {{ $buy->price }}
+                                                    {{ $buy->price }}
                                                 </td>
-                                            @else
+                                                @else
                                                 N/A
                                                 @endif
                                                 </td>
                                                 <td>
-                                                    <a href="" data-toggle="modal" data-target="#modal-aa"
-                                                        class="btn btn-success"><i
-                                                            class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="" data-toggle="modal" data-target="#modal-aa" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                                                    <a href="{{ route('delete.car.price', $car->id) }}"
-                                                        class="btn btn-danger"onclick="return confirm('Are you sure you want to delete?')">
+                                                    <a href="{{ route('delete.car.price', $car->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">
                                                         <i class="fa-solid fa-trash"></i></a>
                                                 </td>
                                             </tr>
 
                                             @php
-                                                $totalPrice = 0;
+                                            $totalPrice = 0;
                                             @endphp
                                             @foreach ($expenses as $expense)
-                                                @if ($expense->car_id == $car->id)
-                                                    <tr>
+                                            @if ($expense->car_id == $car->id)
+                                            <tr>
 
 
-                                                        <td>{{ $expense->created_at }}</td>
-                                                        <td>{{ $car->car_type }} &nbsp; (
-                                                            {{ $car->car_number }})&nbsp; -
-                                                            {{ $expense->description }}</td>
-                                                        <td>{{ $expense->expense_price }}</td>
-                                                        <td>
-                                                            <a type="button" class="btn btn-success text-white"
-                                                                data-toggle="modal" data-target="#modal-lg1">
-                                                                <i class="fa-solid fa-pen-to-square"></i>
-                                                            </a>
-                                                            <a href="{{ route('delete.expense', $expense->id) }}"
-                                                                class="btn btn-danger "onclick="return confirm('Are you sure you want to delete?')">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </a>
-                                                        </td>
-                                                        @php
-                                                            $totalPrice += $expense->expense_price;
-                                                        @endphp
+                                                <td>{{ $expense->created_at }}</td>
+                                                <td>{{ $car->car_type }} &nbsp; (
+                                                    {{ $car->car_number }})&nbsp; -
+                                                    {{ $expense->description }}
+                                                </td>
+                                                <td>{{ $expense->expense_price }}</td>
+                                                <td>
+                                            
+                                                    <a href="{{ route('edit.expense', $expense->id) }}" class="btn btn-success " >
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
+                                                    <a href="{{ route('delete.expense', $expense->id) }}" class="btn btn-danger " onclick="return confirm('Are you sure you want to delete?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                @php
+                                                $totalPrice += $expense->expense_price;
+                                                @endphp
                                                 @endif
-                                            @endforeach
+                                                @endforeach
 
                                             <tr>
-                                                <td colspan='2' class="font-weight-bold"
-                                                    style="background-color:#96c5f8">Total Expense </td>
+                                                <td colspan='2' class="font-weight-bold" style="background-color:#96c5f8">Total Expense </td>
                                                 <td style="background-color:#96c5f8" class="font-weight-bold">
+                                                    @if (is_numeric($buy->price) && is_numeric($totalPrice))
                                                     {{ ($buy->price ?? 0) + $totalPrice }}
+                                                    @else
+
+                                                    N/A
+                                                    @endif
 
 
                                                 </td>
@@ -295,59 +280,7 @@
 
                                             </tr>
                                         </tbody>
-                                        <div class="modal fade" id="modal-lg1">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title">Car Expenses Edit</h4>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ url('expense/edit', $car->id) }}"
-                                                            method="POST">
-                                                            @csrf
 
-                                                            <div class="form-group " style="display:none">
-                                                                <label for="expense_price">Car Name</label>
-                                                                <input type="text" value="{{ $car->id }}"
-                                                                    class="form-control" id="expense_price"
-                                                                    name="expense_price"
-                                                                    placeholder="Enter Expense Amount"
-                                                                    value="{{ old('expense_price') }}">
-
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="description">Description</label>
-
-                                                                <textarea class="form-control" rows="3" name="description" placeholder="Enter ..."> @isset($expense)
-{{ $expense->description }}
-@endisset
-                                                                    </textarea>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="expense_price">Price</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="expense_price" name="expense_price"
-                                                                    placeholder="Enter Expense Amount"
-                                                                    value="{{ isset($expense) ? $expense->expense_price : '' }}">
-                                                            </div>
-
-
-
-                                                            <!-- /.card-body -->
-                                                            <div class="modal-footer justify-content-between">
-                                                                <button type="button" class="btn btn-default"
-                                                                    data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary"
-                                                                    style="background-color: #007BFF">Edit</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
                                                 </div>
                                                 <!-- /.modal-content -->
                                             </div>

@@ -57,6 +57,10 @@ Route::middleware(['auth'])->group(
         Route::post('/cars_update/{id}', [CarController::class, 'update']);
         Route::get('/Car_Detail/{id}', [CarController::class, 'car_detail']);
 
+
+
+
+
         //Add Payment
         Route::get('/payment-detail/{id}', [AddPaymentController::class, 'add_pay'])->name('payment.detail');
         Route::post('/Add_Payment/{id}', [AddPaymentController::class, 'Add_Payment']);
@@ -84,7 +88,13 @@ Route::middleware(['auth'])->group(
         Route::get('/car_expense/{id}', [CarExpenseController::class, 'car_expense']);
         Route::post('/car_expense_store/{id}', [CarExpenseController::class, 'car_expense_store']);
         Route::get('/expense/delete/{id}', [CarExpenseController::class, 'delete'])->name('delete.expense');
-        Route::post('/expense/edit/{id}', [CarExpenseController::class, 'update'])->name('edit.expense');
+        // Route::post('/expense/edit/{id}', [CarExpenseController::class, 'update'])->name('edit.expense');
+        Route::get('/expense_edit/{id}', [CarExpenseController::class, 'expense_edit'])->name('edit.expense');
+
+        Route::post('/car_expense_update/{id}', [CarExpenseController::class, 'car_expense_update'])->name('expense_update');
+
+
+
 
         Route::controller(ExpenseController::class)->group(function () {
             Route::get('/expense', 'expense');
@@ -94,7 +104,6 @@ Route::middleware(['auth'])->group(
             Route::post('/expense_update/{id}', 'update');
         });
         Route::get('/expense/filter', [ExpenseController::class, 'filter'])->name('filter.companyExpense');
-
 
         //Expense-Category
         Route::controller(ExpenseCategoryController::class)->group(function () {

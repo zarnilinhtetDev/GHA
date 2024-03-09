@@ -243,23 +243,7 @@ class CarController extends Controller
                 ->join('cars', 'car_id', '=', 'cars.id')
                 ->where('cars.id', $car->id)
                 ->first();
-            // $payment = Car::select(
-            //     DB::raw('SUM(add_payments.add_payment)as tot_payment')
-            // )
-            //     ->leftJoin('add_payments', 'cars.id', '=', 'add_payments.car_id')
-            //     ->where('cars.id', $car->id)
-            //     ->groupBy('cars.car_type', 'cars.car_model', 'cars.car_number')
-            //     ->first();
 
-            // // $data = Car::select(
-            //     DB::raw('SUM(car_expenses.expense_price) as total_expense_price')
-            // )
-            //     ->join('buys', 'cars.id', '=', 'buys.car_id')
-            //     ->join('buyers', 'cars.id', '=', 'buyers.car_id')
-            //     ->leftJoin('car_expenses', 'cars.id', '=', 'car_expenses.car_id')
-            //     ->where('cars.id', $car->id)
-            //     ->groupBy('cars.car_type', 'cars.car_model', 'cars.car_number')
-            //     ->first();
             $data = Car::select(
                 DB::raw('SUM(car_expenses.expense_price) as total_expense_price'),
                 DB::raw('SUM(add_payments.add_payment) as total_payment_amount')
@@ -292,4 +276,5 @@ class CarController extends Controller
 
         return view('blade.cars.Sold_Out', compact('buyer', 'profits', 'total_payments'));
     }
+
 }

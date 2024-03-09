@@ -46,15 +46,26 @@ class CarExpenseController extends Controller
 
         return redirect()->back()->with('deleteStatus', 'Expense deleted successfully');
     }
-    public function update(Request $request, $id)
+   
+
+    public function expense_edit($id){
+
+        $carExpense = CarExpense::where('id', $id)->first();
+        $car= Car::where('id',$carExpense->car_id)->first();
+        return view('blade.cars.carExpenseEdid',compact('car','carExpense'));
+    }
+
+     public function car_expense_update(Request $request, $id)
     {
         $data = $request->validate([
             'description' => 'required',
             'expense_price' => 'required|numeric',
         ]);
-        $carExpense = CarExpense::where('car_id', $id)->first();
+        $carExpense = CarExpense::find($id);
         $carExpense->update($data);
 
-        return redirect()->back()->with('success', 'Car Expense updated successfully');
+        return redirect()->route('edit.expense', ['id' => $id])->with('updateStatus', 'Car Expense updated successfully');
+
+
     }
 }
